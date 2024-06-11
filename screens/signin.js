@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {doc, setDoc} from 'firebase/firestore';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import {doc, setDoc} from 'firebase/firestore';
 import { auth, db} from '../firebaseConfig';
     
 
@@ -96,7 +96,7 @@ const Signin =({navigation}) => {
         return;
     }
     try{
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password );
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password );
         const user = userCredential.user;
         await setDoc(doc(db,'users',user.uid),{
             firstName,
