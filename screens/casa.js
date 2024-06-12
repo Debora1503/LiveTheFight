@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const Casa =({navigation}) =>{
 
@@ -14,8 +15,11 @@ const Casa =({navigation}) =>{
     return(
         <View style={styles.container}>
         <Text>Hello</Text>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <Text style={styles.buttonText}>Open Menu</Text>
+        <TouchableOpacity
+                style={styles.menuButton}
+                onPress={() => navigation.openDrawer()}
+            >
+                <Ionicons name="menu" size={32} color="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>navigation.navigate("Home")}>
             <Text>Home</Text>
@@ -31,7 +35,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
         padding:60,
-    }
+    },
+    menuButton: {
+        position: 'absolute',
+        top: 40,
+        left: 20,
+    },
+    text: {
+        fontSize: 20,
+        color: 'white',
+    },
+    buttonText: {
+        color: 'white',
+        marginTop: 20,
+        fontSize: 18,
+    },
 });
 
 

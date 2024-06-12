@@ -13,13 +13,25 @@ import Signin from './screens/signin';
 import Casa from './screens/casa';
 import Atletas from './screens/atletas';
 import Treinadores from './screens/treinadores';
+import CustomDrawerContent from './CustomDrawerContent';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function CasaDrawer() {
   return (
-    <Drawer.Navigator initialRouteName="Casa">
+    <Drawer.Navigator initialRouteName="Casa"
+    drawerContent={(props) => <CustomDrawerContent {...props} />}
+    screenOptions={{
+      headerShown: true, // Esconde o cabeçalho padrão
+      drawerLabelStyle: {
+        color: '#4b5563', // Cor do texto dos itens do drawer
+        textAlign: 'center',
+      },
+      drawerActiveTintColor: '#000', // Cor do item ativo no drawer
+      drawerInactiveTintColor: '#67e8f9', // Cor do item inativo no drawer
+    }}
+    >
       <Drawer.Screen name="Casa" component={Casa} />
       <Drawer.Screen name="Atletas" component={Atletas} />
       <Drawer.Screen name="Treinadores" component={Treinadores} />
