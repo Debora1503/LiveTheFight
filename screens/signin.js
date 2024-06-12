@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
     
 
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
     },
     form:{
         backgroundColor:'#A0A0A0',
-        padding:60,
+        padding:75,
         shadowColor:"black",
         shadowOffset:{
             width:0,
@@ -220,6 +221,7 @@ const styles = StyleSheet.create({
     },
     input:{
         height:40,
+        width: 180,
         borderColor:'#ddd',
         borderWidth:1,
         marginBottom:15,
@@ -227,13 +229,14 @@ const styles = StyleSheet.create({
         borderRadius:5,
     },
     logo:{
-        width:150,
-        height:150,
+        marginTop: -50,
+        width:170,
+        height:170,
         resizeMode: 'cover',
     },
     button:{
         marginTop: 5,
-        width:155,
+        width:180,
         height:40,
         justifyContent:'center',
         alignItems:'center',

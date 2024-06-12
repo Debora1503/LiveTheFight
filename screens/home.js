@@ -1,21 +1,17 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Button } from 'react-native';
-import React from 'react';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
-
-
-const Home = ({navigation}) => { //As telas eu deixo assim como funções pq acho q fica mais facil e o {navigation} é obrigatorio pra ir de uma tela pra outra
+const Home = ({navigation}) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false, // Define headerShown como false para ocultar a barra de navegação
     });
   }, [navigation]);
 
-
-
   return (
     <View style={styles.container}>
-
       <Image source={require('../img/Logo.png')} style={styles.logo}/>
 
       <TouchableOpacity style={[styles.button, {backgroundColor:'dimgray'}]} onPress={()=> navigation.navigate("Login")} >
@@ -25,10 +21,8 @@ const Home = ({navigation}) => { //As telas eu deixo assim como funções pq ach
       <TouchableOpacity style={[styles.button, {backgroundColor:'dimgray'}]} onPress={()=> navigation.navigate("Signin")} >
         <Text style={styles.textbutton}>Sign In</Text>
       </TouchableOpacity>
-
     </View>
   );
-  //E aquele "TouchableOpacity" é só um botão e o "onPress" é oq q queres q faça quando ele for precionado
 }
 
 const styles = StyleSheet.create({
@@ -67,7 +61,6 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:18,
   },
+});
 
-}); 
-
-export default Home; // Tens q dar export da função pra conseguires importar ela na App.js
+export default Home;

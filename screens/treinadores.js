@@ -1,6 +1,7 @@
 // screens/Treinadores.js
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
 export default function Treinadores() {
   return (

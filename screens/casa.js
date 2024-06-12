@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-nati
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from 'react-native-snap-carousel';
 import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import PropTypes from 'prop-types';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -11,7 +12,6 @@ const entries = [
   { title: 'Slide 1', text: 'This is the first slide.' },
   { title: 'Slide 2', text: 'This is the second slide.' },
   { title: 'Slide 3', text: 'This is the third slide.' },
-  // Add more slides as needed
 ];
 
 const Casa = ({ navigation }) => {
@@ -54,6 +54,10 @@ const Casa = ({ navigation }) => {
     </View>
   );
 };
+
+Casa.propTypes = {
+    navigation: PropTypes.object.isRequired, // Adicione isso se necessário
+  };
 
 const styles = StyleSheet.create({
   container: {

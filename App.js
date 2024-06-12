@@ -3,24 +3,36 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
-
+import { ViewPropTypes, View, Text } from 'react-native';
 
 import Home from './screens/home';
 import Login from './screens/login';
 import Signin from './screens/signin';
-import CasaScreen from './screens/casa';
+import HomePage from './screens/casa';
 import Atletas from './screens/atletas';
 import Treinadores from './screens/treinadores';
 import CustomDrawerContent from './CustomDrawerContent';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+/*
+const CustomComponent = ({ children }) => {
+  return (
+    <View style={{ flex: 1 }}>
+      <Text>{children}</Text>
+    </View>
+  );
+};
+
+CustomComponent.propTypes = {
+  children: ViewPropTypes.node.isRequired, // Use ViewPropTypes for View components
+};*/
+
 
 function CasaDrawer() {
   return (
     <Drawer.Navigator
-      initialRouteName="CasaScreen"
+      initialRouteName="HomePage"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: true,
@@ -32,9 +44,10 @@ function CasaDrawer() {
         drawerInactiveTintColor: '#67e8f9',
       }}
     >
-      <Drawer.Screen name="CasaScreen" component={CasaScreen} />
+      <Drawer.Screen name="HomePage" component={HomePage} />
       <Drawer.Screen name="Atletas" component={Atletas} />
       <Drawer.Screen name="Treinadores" component={Treinadores} />
+      <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
 }
