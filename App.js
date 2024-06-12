@@ -3,11 +3,13 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+
 
 import Home from './screens/home';
 import Login from './screens/login';
 import Signin from './screens/signin';
-import Casa from './screens/casa';
+import CasaScreen from './screens/casa';
 import Atletas from './screens/atletas';
 import Treinadores from './screens/treinadores';
 import CustomDrawerContent from './CustomDrawerContent';
@@ -18,7 +20,7 @@ const Drawer = createDrawerNavigator();
 function CasaDrawer() {
   return (
     <Drawer.Navigator
-      initialRouteName="Casa"
+      initialRouteName="CasaScreen"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: true,
@@ -30,7 +32,7 @@ function CasaDrawer() {
         drawerInactiveTintColor: '#67e8f9',
       }}
     >
-      <Drawer.Screen name="Casa" component={Casa} />
+      <Drawer.Screen name="CasaScreen" component={CasaScreen} />
       <Drawer.Screen name="Atletas" component={Atletas} />
       <Drawer.Screen name="Treinadores" component={Treinadores} />
     </Drawer.Navigator>

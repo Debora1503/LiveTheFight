@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from 'react-native-snap-carousel';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
