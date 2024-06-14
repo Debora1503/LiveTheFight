@@ -2,6 +2,9 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Button, KeyboardAvoidingView} from 'react-native';
 import { useState } from 'react';
+import { firebase_auth } from '../firebase/firebaseconf';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 const Login = ({navigation}) => { 
 
@@ -14,8 +17,21 @@ const Login = ({navigation}) => {
     });
   }, [navigation]);
 
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const auth = firebase_auth;
+  const handleLogin = async () => {
+    try {
+        const response = await signInWithEmailAndPassword(auth, email, password);
+        console.log(response);
+        navigation.navigate('Casa');
+      } catch (error) {
+        console.log(error);
+      alert("Dados incorretos!");
+    }
+  };
+
   return (
     
 
@@ -24,13 +40,13 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
         <View style={styles.form}>
 
-          <Text style={styles.label}>User name:</Text>
-          <TextInput style={styles.input} placeholder='Enter your name' value={username} onChangeText={setUsername} />
+          <Text style={styles.label}> Email:</Text>
+          <TextInput style={styles.input} placeholder='Enter your email' value={email} onChangeText={setEmail} />
 
           <Text style={styles.label}>Password:</Text>
           <TextInput style={styles.input} placeholder='Enter your password' secureTextEntry value={password} onChangeText={setPassword} />
             
-          <TouchableOpacity style={[styles.button, {backgroundColor:'#707070'}]} onPress={() => navigation.navigate("Casa")} >
+          <TouchableOpacity style={[styles.button, {backgroundColor:'#707070'}]} onPress={handleLogin} >
           <Text style={styles.textbutton}>Login</Text>
           </TouchableOpacity>
         </View>
