@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import { firebase_auth } from '../firebase/firebaseconf';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 const Signin = ({ navigation }) => {
     React.useLayoutEffect(() => {
@@ -31,7 +32,6 @@ const Signin = ({ navigation }) => {
         setLastName(text);
     };
 
-
     const handleEmailChange = (text) => {
         setEmail(text);
     };
@@ -49,11 +49,12 @@ const Signin = ({ navigation }) => {
     };
 
     const auth = firebase_auth;
+    const db = getFirestore();
 
     const handleSubmit = async () => {
         // Verifica se os campos obrigatórios estão preenchidos
         try {
-            if (!firstName || !lastName || !email || !number || !username || !password ) {
+            if (!firstName || !lastName || !email || !number || !username || !password) {
                 alert('Todos os campos devem ser preenchidos.');
                 return;
             } else if (!/\d/.test(firstName || lastName || username)) {

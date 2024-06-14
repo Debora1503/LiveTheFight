@@ -1,26 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Button } from 'react-native';
+
+import * as React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 
 const ArtesMarciais = ({navigation}) => {
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        });
-    }, [navigation]);
-
-    return(
-        <View style={StyleSheet.container}>
-            <Text>martial Artes</Text>
-        </View>
-    );
-}
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>artesmarciais Screen</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        alignItems: 'center',
-        justifyContent:'center',
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 20,
+  },
 });
 
 export default ArtesMarciais;

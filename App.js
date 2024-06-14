@@ -3,31 +3,17 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { ViewPropTypes, View, Text } from 'react-native';
 
 import Home from './screens/home';
 import Login from './screens/login';
 import Signin from './screens/signin';
 import HomePage from './screens/casa';
-import Atletas from './screens/atletas';
 import Treinadores from './screens/treinadores';
+import Sanda from './screens/SandaPasta/sanda';
 import CustomDrawerContent from './CustomDrawerContent';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-/*
-const CustomComponent = ({ children }) => {
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>{children}</Text>
-    </View>
-  );
-};
-
-CustomComponent.propTypes = {
-  children: ViewPropTypes.node.isRequired, // Use ViewPropTypes for View components
-};*/
-
 
 function CasaDrawer() {
   return (
@@ -45,8 +31,8 @@ function CasaDrawer() {
       }}
     >
       <Drawer.Screen name="HomePage" component={HomePage} />
-      <Drawer.Screen name="Atletas" component={Atletas} />
       <Drawer.Screen name="Treinadores" component={Treinadores} />
+      <Drawer.Screen name="Sanda" component={Sanda} />
       <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
@@ -60,6 +46,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signin" component={Signin} />
         <Stack.Screen name="Casa" component={CasaDrawer} options={{ headerShown: false }} />
+        <Stack.Screen name="Sanda" component={Sanda} />
       </Stack.Navigator>
     </NavigationContainer>
   );
