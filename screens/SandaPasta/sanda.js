@@ -1,8 +1,9 @@
 // ./screens/Sanda.js
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
+import { DrawerActions } from '@react-navigation/native';
 
 const Sanda = ({ navigation }) => {
   React.useLayoutEffect(() => {
@@ -13,7 +14,7 @@ const Sanda = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+            <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}
@@ -24,15 +25,19 @@ const Sanda = ({ navigation }) => {
       
       <View style={styles.gridContainer}>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaAtletas')}>
+          <Image source={require('../../img/lutar.png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Atletas</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaTreinador')}>
+          <Image source={require('../../img/treinador.png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Treinador</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaInfo')}>
+          <Image source={require('../../img/boxe.png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Info</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaEventos')}>
+          <Image source={require('../../img/julho.png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Eventos</Text>
         </TouchableOpacity>
       </View>
@@ -48,9 +53,13 @@ const styles = StyleSheet.create({
   },
   titulo: {
     textAlign: 'center',
+    justifyContent:'center',
     color: 'white',
-    fontSize: 22,
+    fontSize: 25,
     marginTop: -15,
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
   menuButton: {
     position: 'absolute',
@@ -59,24 +68,36 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 170,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   square: {
-    width: '45%',
-    height: 150,
-    backgroundColor: '#76c7c0',
+    marginLeft: -15,
+    marginRight:-10,
+    width: '50%',
+    height: 170,
+    backgroundColor: '#C8C8C8',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
     borderRadius: 10,
+    borderWidth: 2,  // Adicionado para a borda
+    borderColor: '#33FFFF',  // Cor da borda
+  },
+  squareImage: {
+    width: 50,
+    height: 50,
+    marginBottom: 10,
   },
   squareText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
 });
 

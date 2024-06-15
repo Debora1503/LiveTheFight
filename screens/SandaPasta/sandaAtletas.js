@@ -13,7 +13,7 @@ const SandaAtletas = ({navigation}) => {
   
   return (
     <View style= {styles.container}>
-    <StatusBar style="auto" />
+      <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}
