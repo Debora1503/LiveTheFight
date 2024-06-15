@@ -12,7 +12,7 @@ const Sanda = ({navigation}) => {
   }, [navigation]);
   
   return (
-    <View>
+    <View style= {styles.container}>
       <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
@@ -20,12 +20,23 @@ const Sanda = ({navigation}) => {
       >
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
-      <Text>Sanda</Text>
+      <Text style = {styles.titulo}>Sanda</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'gray',
+    padding:60,
+  },
+  titulo:{
+    textAlign:'center',
+    color:'white',
+    fontSize:22,
+    marginTop:-15,
+  },
   menuButton: {
     position: 'absolute',
     top: 40,
