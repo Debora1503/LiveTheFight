@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const { width: viewportWidth } = Dimensions.get('window');
 
 const entries = [
-  { title: 'Slide 1', text: 'This is the first slide.' },
+  { title: 'Slide 1', text: 'This is the first slide.', image: require('../img/GreciaSelecao.jpg') },
   { title: 'Slide 2', text: 'This is the second slide.' },
   { title: 'Slide 3', text: 'This is the third slide.' },
 ];
@@ -24,8 +24,14 @@ const Casa = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.slide}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.text}>{item.text}</Text>
+      {item.image ? (
+        <Image source={item.image} style={styles.fullSlideImage} />
+      ) : (
+        <>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.text}>{item.text}</Text>
+        </>
+      )}
     </View>
   );
 
@@ -45,33 +51,39 @@ const Casa = ({ navigation }) => {
           data={entries}
           renderItem={renderItem}
           sliderWidth={viewportWidth}
-          itemWidth={viewportWidth * 0.8}
+          itemWidth={viewportWidth - 60} // Adjusted itemWidth to center the slide
           layout={'default'}
         />
 
         <View style={styles.noticia}>
           <Text style={styles.titulonuti}>Noticias:</Text>
+          
+          {/* Noticia 1 */}
           <Text style={styles.tituloum}>Ultimos Campeonatos:</Text>
-          <Text style={styles.destaque}>Campeonato Europeu </Text>
-          <Text>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
+          <Text style={styles.destaque}>Campeonato Europeu</Text>
+          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
           <View style={styles.imageContainer}>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
-          <Text style={styles.destaque}>Campeonato Europeu </Text>
-          <Text>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
+          
+          <View style={styles.divider} />
+
+          {/* Noticia 2 */}
+          <Text style={styles.destaque}>Campeonato Europeu</Text>
+          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
           <View style={styles.imageContainer}>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
-          <Text style={styles.destaque}>Campeonato Europeu </Text>
-          <Text>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
+          
+          <View style={styles.divider} />
+
+          {/* Noticia 3 */}
+          <Text style={styles.destaque}>Campeonato Europeu</Text>
+          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
           <View style={styles.imageContainer}>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
         </View>
-
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.buttonText}>Home</Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -102,17 +114,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: 'white',
-    marginTop:-20,
+    marginTop: -20,
   },
   slide: {
     backgroundColor: '#76c7c0',
     borderRadius: 10,
-    height: 200,
-    padding: 20,
-    marginLeft: 25,
-    marginRight: 25,
+    height: 240,
+    width: viewportWidth - 60, // Adjusted width to fit within the viewport
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
+  },
+  fullSlideImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   title: {
     fontSize: 24,
@@ -123,21 +139,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#fff',
   },
-  buttonText: {
-    color: 'white',
-    marginTop: 20,
-    fontSize: 18,
-  },
   noticia: {
     backgroundColor: '#A8A8A8',
     marginTop: 25,
     borderRadius: 10,
     padding: 10,
-    alignItems: 'center',
-    width:350,
+    width: 350,
   },
   titulonuti: {
-    fontSize: 20,
+    fontSize: 22,
+    color: 'white',
   },
   tituloum: {
     fontSize: 16,
@@ -149,25 +160,35 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
+  noticiaText: {
+    textAlign: 'left',
+    marginBottom: 15,
+  },
   imageContainer: {
     marginTop: 15,
     width: '100%',
     alignItems: 'center',
   },
   GreciaSelecao: {
-    width: 170,
-    height: 170,
+    width: 220,
+    height: 220,
     resizeMode: 'cover',
     marginTop: 10,
-    marginBottom:15,
-    borderRadius:10,
-    shadowColor: "black",
+    marginBottom: 15,
+    borderRadius: 10,
+    shadowColor: 'black',
     shadowOffset: {
-        width: 0,
-        height: 2
+      width: 0,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  divider: {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#ddd',
+    marginVertical: 15,
   },
 });
 
