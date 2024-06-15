@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: 'white',
+    marginTop:-20,
   },
   slide: {
     backgroundColor: '#76c7c0',
@@ -129,10 +130,11 @@ const styles = StyleSheet.create({
   },
   noticia: {
     backgroundColor: '#A8A8A8',
-    marginTop: 10,
+    marginTop: 25,
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',
+    width:350,
   },
   titulonuti: {
     fontSize: 20,
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   imageContainer: {
-    marginTop: 10,
+    marginTop: 15,
     width: '100%',
     alignItems: 'center',
   },
