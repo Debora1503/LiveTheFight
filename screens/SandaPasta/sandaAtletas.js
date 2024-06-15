@@ -4,22 +4,23 @@ import { View, Text,StyleSheet,TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
-const SandaInfo = ({navigation}) => {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
+const SandaAtletas = ({navigation}) => {
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+          headerShown: false,
+        });
+      }, [navigation]);
   
   return (
     <View style= {styles.container}>
-      <StatusBar style="auto" />
+    <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}
       >
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
+
       <Text style = {styles.titulo}>Sanda</Text>
     </View>
   );
@@ -44,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SandaInfo;
+export default SandaAtletas;

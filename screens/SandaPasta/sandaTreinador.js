@@ -4,7 +4,7 @@ import { View, Text,StyleSheet,TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
-const SandaInfo = ({navigation}) => {
+const SandaTreinador = ({navigation}) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SandaInfo;
+export default SandaTreinador;
