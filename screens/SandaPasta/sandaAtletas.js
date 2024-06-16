@@ -21,7 +21,8 @@ const SandaAtletas = ({navigation}) => {
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
 
-      <Text style = {styles.titulo}>Sanda</Text>
+      <Text style = {styles.titulo}>Sanda Atletas</Text>
+      
     </View>
   );
 };
