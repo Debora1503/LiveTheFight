@@ -115,6 +115,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: 'white',
     marginTop: -20,
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
   slide: {
     backgroundColor: '#76c7c0',
