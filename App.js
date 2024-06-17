@@ -14,6 +14,7 @@ import SandaTreinador from './screens/SandaPasta/sandaTreinador';
 import SandaInfo from './screens/SandaPasta/sandainfo';
 import SandaEventos from './screens/SandaPasta/sandaEventos';
 import SandaAtletas from './screens/SandaPasta/sandaAtletas';
+import AtletaDetail from './screens/SandaPasta/AtletaDetail';
 import CustomDrawerContent from './CustomDrawerContent';
 
 const Stack = createStackNavigator();
@@ -37,10 +38,10 @@ function CasaDrawer() {
       <Drawer.Screen name="HomePage" component={HomePage} />
       <Drawer.Screen name="Treinadores" component={Treinadores} />
       <Drawer.Screen name="Sanda" component={Sanda} />
-      <Drawer.Screen name="SandaAtletas" component={SandaAtletas}/>
-      <Drawer.Screen name="SandaTreinador" component={SandaTreinador}/>
-      <Drawer.Screen name="SandaInfo" component={SandaInfo}/>
-      <Drawer.Screen name="SandaEventos" component={SandaEventos}/>
+      <Drawer.Screen name="SandaAtletas" component={SandaAtletas} />
+      <Drawer.Screen name="SandaTreinador" component={SandaTreinador} />
+      <Drawer.Screen name="SandaInfo" component={SandaInfo} />
+      <Drawer.Screen name="SandaEventos" component={SandaEventos} />
       <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
@@ -55,10 +56,26 @@ export default function App() {
         <Stack.Screen name="Signin" component={Signin} />
         <Stack.Screen name="Casa" component={CasaDrawer} options={{ headerShown: false }} />
         <Stack.Screen name="Sanda" component={Sanda} />
-        <Stack.Screen name="SandaTreinador" component={SandaTreinador} options={{headerShown: false}} />
-        <Stack.Screen name="SandaAtletas" component={SandaAtletas} options={{headerShown: false}} />
-        <Stack.Screen name="SandaInfo" component={SandaInfo} options={{headerShown: false}} />
-        <Stack.Screen name="SandaEventos" component={SandaEventos} options={{headerShown: false}} />
+        <Stack.Screen name="SandaTreinador" component={SandaTreinador} options={{ headerShown: false }} />
+        <Stack.Screen name="SandaAtletas" component={SandaAtletas} options={{ headerShown: false }} />
+        <Stack.Screen name="SandaInfo" component={SandaInfo} options={{ headerShown: false }} />
+        <Stack.Screen name="SandaEventos" component={SandaEventos} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="AtletaDetail"
+          component={AtletaDetail}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerBackTitleVisible: false,
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: 'gray',
+            },
+            headerTitleStyle: {
+              color: 'white',
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
