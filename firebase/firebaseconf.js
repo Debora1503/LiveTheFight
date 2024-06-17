@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: "livethefight-33942",
   storageBucket: "livethefight-33942.appspot.com",
   messagingSenderId: "379114863326",
-  appId: "1:379114863326:web:4b42c571b96da3c980e04f",
+  appId: "1:379114863326:web:4b42c571b96da3c980e04f", 
   measurementId: "G-M4CRF7SWX0"
 };
 

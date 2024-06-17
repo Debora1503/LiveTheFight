@@ -1,15 +1,14 @@
 // ./screens/SandaPasta/SandaAtletas.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
 const atletas = [
-  'Bernardo Estevão',
-  'Débora Bandeirinha',
-  'Diogo Rodrigues',
-  'Tiago Carvalho',
-  'Weronika Tatara'
+  { name: 'Bernardo Estevão', idade: 25, foto: require('../../img/bernardo.jpg') },
+  { name: 'Débora Bandeirinha', idade: 22, foto: require('../../img/debora.jpg') },
+  { name: 'Diogo Rodrigues', idade: 27, foto: require('../../img/diogo.jpg') },
+  { name: 'Tiago Carvalho', idade: 24, foto: require('../../img/tiago.jpg') },
+  { name: 'Weronika Tatara', idade: 23, foto: require('../../img/weronika.jpg') },
 ];
 
 const SandaAtletas = ({ navigation }) => {
@@ -21,23 +20,25 @@ const SandaAtletas = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}
       >
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
-
       <Text style={styles.titulo}>Sanda Atletas</Text>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView contentContainerStyle={styles.listContainer}>
         {atletas.map((atleta, index) => (
           <TouchableOpacity
             key={index}
             style={styles.atletaButton}
-            onPress={() => navigation.navigate('AtletaDetail', { atletaName: atleta })}
+            onPress={() => navigation.navigate('AtletaDetail', { 
+              atletaName: atleta.name, 
+              idade: atleta.idade,
+              foto: atleta.foto 
+            })}
           >
-            <Text style={styles.atletaText}>{atleta}</Text>
+            <Text style={styles.atletaText}>{atleta.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -51,36 +52,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     padding: 20,
   },
+  menuButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+  },
   titulo: {
     textAlign: 'center',
     color: 'white',
     fontSize: 22,
     marginTop: 30,
   },
-  menuButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-  },
-  scrollView: {
-    marginTop: 20,
+  listContainer: {
+    marginTop: 50,
   },
   atletaButton: {
     backgroundColor: '#C8C8C8',
-    padding: 20,
-    marginVertical: 10,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#33FFFF',
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 5,
   },
   atletaText: {
     color: 'white',
     fontSize: 18,
-    fontWeight: 'bold',
     textAlign: 'center',
-    textShadowColor: '#33FFFF',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
   },
 });
 

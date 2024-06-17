@@ -1,9 +1,9 @@
 // ./screens/SandaPasta/AtletaDetail.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 const AtletaDetail = ({ route, navigation }) => {
-  const { atletaName } = route.params;
+  const { atletaName, idade, foto } = route.params;  // Supondo que 'idade' e 'foto' são passados como parâmetros
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -13,8 +13,14 @@ const AtletaDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>{atletaName}</Text>
-      {/* Adicione mais detalhes sobre o atleta aqui */}
+      <View style={styles.detailsContainer}>
+        <Image source={foto} style={styles.atletaImage} />
+        <View style={styles.textContainer}>
+          <Text style={styles.atletaText}>Nome: {atletaName}</Text>
+          <Text style={styles.atletaText}>Idade: {idade}</Text>
+          {/* Adicione mais detalhes aqui */}
+        </View>
+      </View>
     </View>
   );
 };
@@ -27,10 +33,29 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     padding: 20,
   },
-  titulo: {
-    textAlign: 'center',
+  detailsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#C8C8C8',
+    padding: 10,
+    borderRadius: 10,
+  },
+  atletaImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginRight: 20,
+  },
+  textContainer: {
+    flex: 1,
+  },
+  atletaText: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 18,
+    marginBottom: 10,
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
 });
 
