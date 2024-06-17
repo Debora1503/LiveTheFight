@@ -6,12 +6,30 @@ import { Ionicons } from '@expo/vector-icons';
 const atletas = [
   { name: 'Bernardo Estevão',
      idade: 25, 
-     foto: require('../../img/bernardo.jpg') 
+     foto: require('../../img/bernardo.jpg'),
+     associacao:'YMAA',
+     
+     peso:80,
+     altura:1.80,
+     vitorias:20,
+     derrotas:0,
+     ko:5,
+
+     competicoes:'2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais '
     },
 
   { name: 'Débora Bandeirinha',
      idade: 22, 
-     foto: require('../../img/debora.jpg') 
+     foto: require('../../img/debora.jpg'),
+     associacao: 'YMAA',
+
+     peso: 80,
+     altura: 1.80,
+     vitorias: 20,
+     derrotas: 0,
+     ko: 5,
+
+     competicoes:'2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais '
     },
   { name: 'Diogo Rodrigues', 
     idade: 27, 
@@ -50,7 +68,15 @@ const SandaAtletas = ({ navigation }) => {
             onPress={() => navigation.navigate('AtletaDetail', { 
               atletaName: atleta.name, 
               idade: atleta.idade,
-              foto: atleta.foto 
+              foto: atleta.foto, 
+              associacao: atleta.associacao,
+              peso: atleta.peso,
+              altura: atleta.altura,
+              vitorias: atleta.vitorias,
+              derrotas: atleta.derrotas,
+              ko: atleta.ko,
+              competicoes: atleta.competicoes
+
             })}
           >
             <Text style={styles.atletaText}>{atleta.name}</Text>

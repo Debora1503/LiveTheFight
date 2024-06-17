@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const AtletaDetail = ({ route, navigation }) => {
-  const { atletaName, idade, foto } = route.params;
+  const { atletaName, idade, foto, associacao, peso, altura, vitorias, derrotas, ko, competicoes } = route.params;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -25,7 +25,17 @@ const AtletaDetail = ({ route, navigation }) => {
           <Text style={styles.tituloatleta}>Nome:</Text>
           <Text style={styles.atletaName}>{atletaName}</Text>
           <Text style={styles.tituloatleta}>Idade:</Text>
-          <Text style={styles.atletaText}> {idade}</Text>
+          <Text style={styles.atletaText}> {idade} anos</Text>
+          <Text style={styles.tituloatleta}>Associação</Text>
+          <Text style={styles.atletaText}>{associacao}</Text>
+          <Text style={styles.tituloatleta}>Categoria de peso de competição</Text>
+          <Text style={styles.atletaText}> {peso} kg</Text>
+          <Text style={styles.tituloatleta}>Altura</Text>
+          <Text style={styles.atletaText}> {altura} m </Text>
+          <Text style={styles.tituloatleta}>Histórico de Vitorias, Derrotas e KO's</Text>
+          <Text style={styles.atletaText}> {vitorias} , {derrotas} , {ko} </Text>
+          <Text style={styles.tituloatleta}>Histórico de competições  </Text>
+          <Text style={styles.atletaText}> {competicoes} </Text>
           {/* Adicione mais detalhes aqui */}
         </View>
       </View>
@@ -58,13 +68,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   atletaName: {
-    color: 'white',
+    color: 'black',
     fontSize: 18,
     marginBottom: 10,
 
   },
   atletaText: {
-    color: 'white',
+    color: 'black',
     fontSize: 18,
     marginBottom: 10,
     // Sem sombra azul
@@ -73,7 +83,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   tituloatleta:{
-    color:'white',
+    color:'black',
     fontSize:20,
     textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
     textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
