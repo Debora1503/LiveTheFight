@@ -5,43 +5,60 @@ import { Ionicons } from '@expo/vector-icons';
 
 const atletas = [
   { name: 'Bernardo Estevão',
-     idade: 25, 
-     foto: require('../../img/bernardo.jpg'),
-     associacao:'YMAA',
-     
-     peso:80,
-     altura:1.80,
-     vitorias:20,
-     derrotas:0,
-     ko:5,
-
-     competicoes:'2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais '
-    },
-
+    idade: 25, 
+    foto: require('../../img/bernardo.jpg'),
+    associacao: 'YMAA',
+    peso: 80,
+    altura: 1.80,
+    vitorias: 20,
+    derrotas: 0,
+    ko: 5,
+    competicoes: '2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais'
+  },
   { name: 'Débora Bandeirinha',
-     idade: 22, 
-     foto: require('../../img/debora.jpg'),
-     associacao: 'YMAA',
-
-     peso: 80,
-     altura: 1.80,
-     vitorias: 20,
-     derrotas: 0,
-     ko: 5,
-
-     competicoes:'2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais '
-    },
+    idade: 22, 
+    foto: require('../../img/debora.jpg'),
+    associacao: 'YMAA',
+    peso: 80,
+    altura: 1.80,
+    vitorias: 20,
+    derrotas: 0,
+    ko: 5,
+    competicoes: '2x Campeao Nacional, 1x Campeao europeu e participou os Mundiais'
+  },
   { name: 'Diogo Rodrigues', 
     idade: 27, 
-    foto: require('../../img/diogo.jpg') 
+    foto: require('../../img/diogo.jpg'),
+    associacao: 'YMAA',
+    peso: 78,
+    altura: 1.75,
+    vitorias: 15,
+    derrotas: 2,
+    ko: 3,
+    competicoes: '1x Campeao Nacional, participou os Mundiais'
   },
   { name: 'Tiago Carvalho', 
     idade: 24, 
-    foto: require('../../img/tiago.jpg') 
+    foto: require('../../img/tiago.jpg'),
+    associacao: 'YMAA',
+    peso: 82,
+    altura: 1.82,
+    vitorias: 18,
+    derrotas: 1,
+    ko: 4,
+    competicoes: '2x Campeao Nacional, participou os Europeus'
   },
   { name: 'Weronika Tatara', 
     idade: 23, 
-    foto: require('../../img/weronika.jpg') },
+    foto: require('../../img/weronika.jpg'),
+    associacao: 'YMAA',
+    peso: 70,
+    altura: 1.68,
+    vitorias: 12,
+    derrotas: 3,
+    ko: 2,
+    competicoes: '1x Campeao Nacional, participou os Europeus'
+  },
 ];
 
 const SandaAtletas = ({ navigation }) => {
@@ -76,7 +93,6 @@ const SandaAtletas = ({ navigation }) => {
               derrotas: atleta.derrotas,
               ko: atleta.ko,
               competicoes: atleta.competicoes
-
             })}
           >
             <Text style={styles.atletaText}>{atleta.name}</Text>

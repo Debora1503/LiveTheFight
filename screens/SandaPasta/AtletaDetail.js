@@ -1,6 +1,6 @@
 // ./screens/SandaPasta/AtletaDetail.js
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const AtletaDetail = ({ route, navigation }) => {
@@ -18,35 +18,37 @@ const AtletaDetail = ({ route, navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.detailsContainer}>
         <Image source={foto} style={styles.atletaImage} />
-        <View style={styles.textContainer}>
+        <View style={styles.infoContainer}>
           <Text style={styles.tituloatleta}>Nome:</Text>
           <Text style={styles.atletaName}>{atletaName}</Text>
           <Text style={styles.tituloatleta}>Idade:</Text>
           <Text style={styles.atletaText}> {idade} anos</Text>
-          <Text style={styles.tituloatleta}>Associação</Text>
-          <Text style={styles.atletaText}>{associacao}</Text>
-          <Text style={styles.tituloatleta}>Categoria de peso de competição</Text>
-          <Text style={styles.atletaText}> {peso} kg</Text>
-          <Text style={styles.tituloatleta}>Altura</Text>
-          <Text style={styles.atletaText}> {altura} m </Text>
-          <Text style={styles.tituloatleta}>Histórico de Vitorias, Derrotas e KO's</Text>
-          <Text style={styles.atletaText}> {vitorias} , {derrotas} , {ko} </Text>
-          <Text style={styles.tituloatleta}>Histórico de competições  </Text>
-          <Text style={styles.atletaText}> {competicoes} </Text>
-          {/* Adicione mais detalhes aqui */}
         </View>
       </View>
-    </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.tituloatleta}>Associação:</Text>
+        <Text style={styles.atletaText}>{associacao}</Text>
+        <Text style={styles.tituloatleta}>Categoria de peso de competição:</Text>
+        <Text style={styles.atletaText}> {peso} kg</Text>
+        <Text style={styles.tituloatleta}>Altura:</Text>
+        <Text style={styles.atletaText}> {altura} m </Text>
+        <Text style={styles.tituloatleta}>Histórico de Vitórias, Derrotas e KO's:</Text>
+        <Text style={styles.atletaText}> {vitorias}, {derrotas}, {ko} </Text>
+        <Text style={styles.tituloatleta}>Histórico de competições:</Text>
+        <Text style={styles.atletaText}> {competicoes} </Text>
+        {/* Adicione mais detalhes aqui */}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    flexGrow: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'gray',
     padding: 20,
@@ -57,38 +59,38 @@ const styles = StyleSheet.create({
     backgroundColor: '#C8C8C8',
     padding: 10,
     borderRadius: 10,
+    marginBottom: 20,
   },
   atletaImage: {
     width: 100,
-    height: 100,
+    height: 150,
     borderRadius: 5,
     marginRight: 20,
   },
-  textContainer: {
+  infoContainer: {
     flex: 1,
   },
   atletaName: {
     color: 'black',
     fontSize: 18,
     marginBottom: 10,
-
   },
   atletaText: {
     color: 'black',
     fontSize: 18,
     marginBottom: 10,
-    // Sem sombra azul
   },
   backButton: {
     marginLeft: 15,
   },
-  tituloatleta:{
-    color:'black',
-    fontSize:20,
+  tituloatleta: {
+    color: 'black',
+    fontSize: 20,
     textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
     textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
     textShadowRadius: 10,  // Raio da sombra do texto
-  }
+    marginBottom: 5,
+  },
 });
 
 export default AtletaDetail;
