@@ -4,11 +4,26 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { Ionicons } from '@expo/vector-icons';
 
 const atletas = [
-  { name: 'Bernardo Estevão', idade: 25, foto: require('../../img/bernardo.jpg') },
-  { name: 'Débora Bandeirinha', idade: 22, foto: require('../../img/debora.jpg') },
-  { name: 'Diogo Rodrigues', idade: 27, foto: require('../../img/diogo.jpg') },
-  { name: 'Tiago Carvalho', idade: 24, foto: require('../../img/tiago.jpg') },
-  { name: 'Weronika Tatara', idade: 23, foto: require('../../img/weronika.jpg') },
+  { name: 'Bernardo Estevão',
+     idade: 25, 
+     foto: require('../../img/bernardo.jpg') 
+    },
+
+  { name: 'Débora Bandeirinha',
+     idade: 22, 
+     foto: require('../../img/debora.jpg') 
+    },
+  { name: 'Diogo Rodrigues', 
+    idade: 27, 
+    foto: require('../../img/diogo.jpg') 
+  },
+  { name: 'Tiago Carvalho', 
+    idade: 24, 
+    foto: require('../../img/tiago.jpg') 
+  },
+  { name: 'Weronika Tatara', 
+    idade: 23, 
+    foto: require('../../img/weronika.jpg') },
 ];
 
 const SandaAtletas = ({ navigation }) => {
@@ -76,6 +91,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
 });
 

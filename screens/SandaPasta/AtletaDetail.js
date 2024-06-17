@@ -1,23 +1,31 @@
 // ./screens/SandaPasta/AtletaDetail.js
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const AtletaDetail = ({ route, navigation }) => {
-  const { atletaName, idade, foto } = route.params;  // Supondo que 'idade' e 'foto' são passados como parâmetros
+  const { atletaName, idade, foto } = route.params;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: atletaName,
+      title: '',
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
+      ),
     });
-  }, [navigation, atletaName]);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
         <Image source={foto} style={styles.atletaImage} />
         <View style={styles.textContainer}>
-          <Text style={styles.atletaText}>Nome: {atletaName}</Text>
-          <Text style={styles.atletaText}>Idade: {idade}</Text>
+          <Text style={styles.tituloatleta}>Nome:</Text>
+          <Text style={styles.atletaName}>{atletaName}</Text>
+          <Text style={styles.tituloatleta}>Idade:</Text>
+          <Text style={styles.atletaText}> {idade}</Text>
           {/* Adicione mais detalhes aqui */}
         </View>
       </View>
@@ -43,20 +51,34 @@ const styles = StyleSheet.create({
   atletaImage: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 5,
     marginRight: 20,
   },
   textContainer: {
     flex: 1,
   },
+  atletaName: {
+    color: 'white',
+    fontSize: 18,
+    marginBottom: 10,
+
+  },
   atletaText: {
     color: 'white',
     fontSize: 18,
     marginBottom: 10,
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto
+    // Sem sombra azul
+  },
+  backButton: {
+    marginLeft: 15,
+  },
+  tituloatleta:{
+    color:'white',
+    fontSize:20,
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
     textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
     textShadowRadius: 10,  // Raio da sombra do texto
-  },
+  }
 });
 
 export default AtletaDetail;
