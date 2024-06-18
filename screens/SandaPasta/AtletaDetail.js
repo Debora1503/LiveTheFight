@@ -29,6 +29,7 @@ const AtletaDetail = ({ route, navigation }) => {
         </View>
       </View>
       <View style={styles.infoContainer}>
+        <Text style={styles.informacaotecnica}>Informação Tecnica</Text>
         <Text style={styles.tituloatleta}>Associação:</Text>
         <Text style={styles.atletaText}>{associacao}</Text>
         <Text style={styles.tituloatleta}>Categoria de peso de competição:</Text>
@@ -69,6 +70,9 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
+    backgroundColor: '#C8C8C8',
+    padding: 10,
+    borderRadius:10,
   },
   atletaName: {
     color: 'black',
@@ -77,8 +81,8 @@ const styles = StyleSheet.create({
   },
   atletaText: {
     color: 'black',
-    fontSize: 18,
-    marginBottom: 10,
+    fontSize: 16,
+    marginBottom: 15,
   },
   backButton: {
     marginLeft: 15,
@@ -86,10 +90,17 @@ const styles = StyleSheet.create({
   tituloatleta: {
     color: 'black',
     fontSize: 20,
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
-    marginBottom: 5,
+   /* textShadowColor: '#fff',  // Cor da sombra do texto (azul)
+    textShadowOffset: { width: 0, height: 0 },  // Deslocamento da sombra do texto
+    textShadowRadius: 5,  // Raio da sombra do texto*/
+    marginBottom: 3,
+  },
+  informacaotecnica: {
+    fontSize:20,
+    marginBottom:10,
+    textShadowColor: '#67e8f9',
+    textShadowOffset: {width: -1, height:1},
+    textShadowRadius: 5
   },
 });
 

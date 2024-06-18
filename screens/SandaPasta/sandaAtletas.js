@@ -119,6 +119,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     marginTop: 30,
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,  // Raio da sombra do texto
   },
   listContainer: {
     marginTop: 50,
@@ -133,9 +136,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
   },
 });
 
