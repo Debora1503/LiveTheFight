@@ -8,7 +8,7 @@ const AtletaDetail = ({ route, navigation }) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: '',
+      title: atletaName,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color="white" />
