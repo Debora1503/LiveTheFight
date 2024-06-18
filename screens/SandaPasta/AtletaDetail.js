@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import { Ionicons } from '@expo/vector-icons';
 
 const AtletaDetail = ({ route, navigation }) => {
-  const { atletaName, idade, foto, associacao, peso, altura, vitorias, derrotas, ko, competicoes } = route.params;
+  const { atletaName, idade, foto, associacao, peso, altura, vitorias, derrotas, ko, competicoes, trabalho, artesmarciais, inicio, selecao } = route.params;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -40,6 +40,16 @@ const AtletaDetail = ({ route, navigation }) => {
         <Text style={styles.atletaText}> {vitorias}, {derrotas}, {ko} </Text>
         <Text style={styles.tituloatleta}>Histórico de competições:</Text>
         <Text style={styles.atletaText}> {competicoes} </Text>
+
+        <Text style={styles.informacaotecnica}>Informações Adicionais</Text>
+        <Text style={styles.tituloatleta}>Ano de inicio das artes marciais :</Text>
+        <Text style={styles.atletaText}> {inicio} </Text>
+        <Text style={styles.tituloatleta}>Ano de entrada para a Seleção:</Text>
+        <Text style={styles.atletaText}> {selecao} </Text>
+        <Text style={styles.tituloatleta}>Histórico de artes marciais praticadas:</Text>
+        <Text style={styles.atletaText}> {artesmarciais} </Text>
+        <Text style={styles.tituloatleta}>Ocupação:</Text>
+        <Text style={styles.atletaText}> {trabalho} </Text>
         {/* Adicione mais detalhes aqui */}
       </View>
     </ScrollView>
