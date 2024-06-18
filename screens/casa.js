@@ -19,6 +19,7 @@ const Casa = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      headerTintColor: '#33FFFF',
     });
   }, [navigation]);
 
@@ -152,6 +153,9 @@ const styles = StyleSheet.create({
   titulonuti: {
     fontSize: 22,
     color: 'white',
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
+    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
+    textShadowRadius: 10,
   },
   tituloum: {
     fontSize: 16,
