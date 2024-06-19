@@ -47,7 +47,9 @@ const AtletaDetail = ({ route, navigation }) => {
         </View>
         <View style={styles.infoBlock}>
           <Text style={styles.tituloAtleta}>Histórico de competições:</Text>
-          <Text style={styles.atletaText}>{competicoes}</Text>
+          {competicoes.map((competicao, idx) => (
+            <Text key={idx} style={styles.atletaText}>{competicao}</Text>
+          ))}
         </View>
         <View style={styles.divider} />
         <Text style={styles.sectionTitle}>Informações Adicionais</Text>
