@@ -1,4 +1,3 @@
-// ./screens/Sanda.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -14,7 +13,7 @@ const Sanda = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-            <StatusBar style="auto" />
+      <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => navigation.openDrawer()}
@@ -22,22 +21,21 @@ const Sanda = ({ navigation }) => {
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
       <Text style={styles.titulo}>Sanda</Text>
-      
       <View style={styles.gridContainer}>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaAtletas')}>
-          <Image source={require('../../img/lutar.png')} style={styles.squareImage} />
+          <Image source={require('../../img/lutar (2).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Atletas</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaTreinador')}>
-          <Image source={require('../../img/treinador.png')} style={styles.squareImage} />
+          <Image source={require('../../img/treinador (1).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Treinador</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaInfo')}>
-          <Image source={require('../../img/boxe.png')} style={styles.squareImage} />
+          <Image source={require('../../img/luvas-de-boxe.png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Info</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaEventos')}>
-          <Image source={require('../../img/julho.png')} style={styles.squareImage} />
+          <Image source={require('../../img/julho (1).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Eventos</Text>
         </TouchableOpacity>
       </View>
@@ -48,18 +46,18 @@ const Sanda = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
-    padding: 60,
+    backgroundColor: '#1E1E1E',
+    padding: 20,
+    paddingTop: 60,
   },
   titulo: {
     textAlign: 'center',
-    justifyContent:'center',
     color: 'white',
-    fontSize: 25,
-    marginTop: -15,
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
+    fontSize: 30,
+    marginBottom: 30,
+    textShadowColor: '#33FFFF',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
   menuButton: {
     position: 'absolute',
@@ -68,36 +66,39 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-    marginTop: 170,
+    marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   square: {
-    marginLeft: -15,
-    marginRight:-10,
-    width: '50%',
+    width: '48%',
     height: 170,
-    backgroundColor: '#C8C8C8',
+    backgroundColor: '#333333',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
     borderRadius: 10,
-    borderWidth: 2,  // Adicionado para a borda
-    borderColor: '#33FFFF',  // Cor da borda
+    borderWidth: 2,
+    borderColor: '#33FFFF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   squareImage: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     marginBottom: 10,
   },
   squareText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
+    textShadowColor: '#33FFFF',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
 });
 

@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 
-const { width: viewportWidth } = Dimensions.get('window');
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 const entries = [
   { title: 'Slide 1', text: 'This is the first slide.', image: require('../img/GreciaSelecao.jpg') },
@@ -19,7 +19,6 @@ const Casa = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
-      headerTintColor: '#33FFFF',
     });
   }, [navigation]);
 
@@ -46,7 +45,9 @@ const Casa = ({ navigation }) => {
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Text style={styles.header}>Welcome</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>Welcome</Text>
+        </View>
         <Carousel
           ref={carouselRef}
           data={entries}
@@ -57,31 +58,30 @@ const Casa = ({ navigation }) => {
         />
 
         <View style={styles.noticia}>
-          <Text style={styles.titulonuti}>Noticias:</Text>
+          <Text style={styles.titulonuti}>Notícias:</Text>
           
-          {/* Noticia 1 */}
-          <Text style={styles.tituloum}>Ultimos Campeonatos:</Text>
-          <Text style={styles.destaque}>Campeonato Europeu</Text>
-          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
-          <View style={styles.imageContainer}>
+          {/* Notícia 1 */}
+          <View style={styles.noticiaContainer}>
+            <Text style={styles.destaque}>Campeonato Europeu</Text>
+            <Text style={styles.noticiaText}>Decorrerá na Suécia de 2 a 6 de Maio. Portugal conquistou 14 medalhas, incluindo 1 primeiro lugar em Sanda Light.</Text>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
           
           <View style={styles.divider} />
 
-          {/* Noticia 2 */}
-          <Text style={styles.destaque}>Campeonato Europeu</Text>
-          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
-          <View style={styles.imageContainer}>
+          {/* Notícia 2 */}
+          <View style={styles.noticiaContainer}>
+            <Text style={styles.destaque}>Outro Título</Text>
+            <Text style={styles.noticiaText}>Descrição da notícia ou resumo sucinto do evento.</Text>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
           
           <View style={styles.divider} />
 
-          {/* Noticia 3 */}
-          <Text style={styles.destaque}>Campeonato Europeu</Text>
-          <Text style={styles.noticiaText}>Decorrino na Suécia de 2-6 de Maio Portugal conquistou 14 medalhas entre elas 1 primeiro lugar em Sanda Light</Text>
-          <View style={styles.imageContainer}>
+          {/* Notícia 3 */}
+          <View style={styles.noticiaContainer}>
+            <Text style={styles.destaque}>Mais um título</Text>
+            <Text style={styles.noticiaText}>Descrição da notícia ou resumo sucinto do evento.</Text>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
         </View>
@@ -97,13 +97,12 @@ Casa.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: '#121212', // Cor de fundo escura
   },
   scrollContainer: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 60,
+    padding: 20,
   },
   menuButton: {
     position: 'absolute',
@@ -111,11 +110,14 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 1,
   },
+  headerContainer: {
+    marginTop: 60, // Margem superior para posicionar abaixo do menu
+    alignItems: 'center',
+  },
   header: {
     fontSize: 24,
     marginBottom: 20,
     color: 'white',
-    marginTop: -20,
     textShadowColor: '#33FFFF',  // Cor da sombra do texto
     textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
     textShadowRadius: 10,  // Raio da sombra do texto
@@ -123,8 +125,8 @@ const styles = StyleSheet.create({
   slide: {
     backgroundColor: '#76c7c0',
     borderRadius: 10,
-    height: 240,
-    width: viewportWidth - 60, // Adjusted width to fit within the viewport
+    height: 260, // Altura aumentada do slide
+    width: viewportWidth - 60,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
@@ -138,6 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
+    marginBottom: 10,
   },
   text: {
     fontSize: 16,
@@ -147,43 +150,41 @@ const styles = StyleSheet.create({
     backgroundColor: '#A8A8A8',
     marginTop: 25,
     borderRadius: 10,
-    padding: 10,
-    width: 350,
+    padding: 15,
+    width: '100%',
+    alignItems: 'center',
   },
   titulonuti: {
     fontSize: 22,
     color: 'white',
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
+    textShadowColor: '#33FFFF',  // Cor da sombra do texto
     textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,
-  },
-  tituloum: {
-    fontSize: 16,
-    marginTop: 10,
+    textShadowRadius: 10,  // Raio da sombra do texto
     marginBottom: 10,
   },
+  noticiaContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
   destaque: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   noticiaText: {
-    textAlign: 'left',
+    fontSize: 16,
+    textAlign: 'center',
     marginBottom: 15,
-  },
-  imageContainer: {
-    marginTop: 15,
-    width: '100%',
-    alignItems: 'center',
+    color: '#333',
   },
   GreciaSelecao: {
-    width: 220,
-    height: 220,
+    width: 280, // Aumentando o tamanho da imagem
+    height: 220, // Altura aumentada da imagem
     resizeMode: 'cover',
     marginTop: 10,
     marginBottom: 15,
     borderRadius: 10,
-    shadowColor: 'black',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,

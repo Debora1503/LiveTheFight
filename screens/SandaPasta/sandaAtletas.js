@@ -1,6 +1,5 @@
-// ./screens/SandaPasta/SandaAtletas.js
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const atletas = [
@@ -18,7 +17,6 @@ const atletas = [
     artesmarciais:'-----',
     inicio: '--',
     selecao: '--',
-
   },
   { name: 'Débora Bandeirinha',
     idade: 18, 
@@ -120,7 +118,10 @@ const SandaAtletas = ({ navigation }) => {
               selecao: atleta.selecao,
             })}
           >
-            <Text style={styles.atletaText}>{atleta.name}</Text>
+            <View style={styles.atletaContent}>
+              <Image source={atleta.foto} style={styles.atletaImage} />
+              <Text style={styles.atletaText}>{atleta.name}</Text>
+            </View>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -131,7 +132,7 @@ const SandaAtletas = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: '#1E1E1E',
     padding: 20,
   },
   menuButton: {
@@ -142,20 +143,33 @@ const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 22,
+    fontSize: 26,
     marginTop: 30,
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto (azul)
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
+    fontWeight: 'bold',
+    textShadowColor: '#33FFFF',  
+    textShadowOffset: { width: -1, height: 1 },  
+    textShadowRadius: 10,  
   },
   listContainer: {
     marginTop: 50,
   },
   atletaButton: {
-    backgroundColor: '#C8C8C8',
-    padding: 10,
-    marginVertical: 5,
+    backgroundColor: '#444444',
+    padding: 15,
+    marginVertical: 10,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  atletaContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  atletaImage: {
+    width: 50,
+    height: 75,
     borderRadius: 5,
+    marginRight: 20,
   },
   atletaText: {
     color: 'white',

@@ -1,4 +1,3 @@
-// ./screens/SandaPasta/AtletaDetail.js
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,35 +21,52 @@ const AtletaDetail = ({ route, navigation }) => {
       <View style={styles.detailsContainer}>
         <Image source={foto} style={styles.atletaImage} />
         <View style={styles.infoContainer}>
-          <Text style={styles.tituloatleta}>Nome:</Text>
+          <Text style={styles.tituloAtleta}>Nome:</Text>
           <Text style={styles.atletaName}>{atletaName}</Text>
-          <Text style={styles.tituloatleta}>Idade:</Text>
-          <Text style={styles.atletaText}> {idade} anos</Text>
+          <Text style={styles.tituloAtleta}>Idade:</Text>
+          <Text style={styles.atletaText}>{idade} anos</Text>
         </View>
       </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.informacaotecnica}>Informação Tecnica</Text>
-        <Text style={styles.tituloatleta}>Associação:</Text>
-        <Text style={styles.atletaText}>{associacao}</Text>
-        <Text style={styles.tituloatleta}>Categoria de peso de competição:</Text>
-        <Text style={styles.atletaText}> {peso} kg</Text>
-        <Text style={styles.tituloatleta}>Altura:</Text>
-        <Text style={styles.atletaText}> {altura} m </Text>
-        <Text style={styles.tituloatleta}>Histórico de Vitórias, Derrotas e KO's:</Text>
-        <Text style={styles.atletaText}> {vitorias}, {derrotas}, {ko} </Text>
-        <Text style={styles.tituloatleta}>Histórico de competições:</Text>
-        <Text style={styles.atletaText}> {competicoes} </Text>
-
-        <Text style={styles.informacaotecnica}>Informações Adicionais</Text>
-        <Text style={styles.tituloatleta}>Ano de inicio das artes marciais :</Text>
-        <Text style={styles.atletaText}> {inicio} </Text>
-        <Text style={styles.tituloatleta}>Ano de entrada para a Seleção:</Text>
-        <Text style={styles.atletaText}> {selecao} </Text>
-        <Text style={styles.tituloatleta}>Histórico de artes marciais praticadas:</Text>
-        <Text style={styles.atletaText}> {artesmarciais} </Text>
-        <Text style={styles.tituloatleta}>Ocupação:</Text>
-        <Text style={styles.atletaText}> {trabalho} </Text>
-        {/* Adicione mais detalhes aqui */}
+      <View style={styles.additionalInfoContainer}>
+        <Text style={styles.sectionTitle}>Informação Técnica</Text>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Associação:</Text>
+          <Text style={styles.atletaText}>{associacao}</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Categoria de peso de competição:</Text>
+          <Text style={styles.atletaText}>{peso} kg</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Altura:</Text>
+          <Text style={styles.atletaText}>{altura} m</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Histórico de Vitórias, Derrotas e KO's:</Text>
+          <Text style={styles.atletaText}>{vitorias} Vitórias, {derrotas} Derrotas, {ko} KO's</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Histórico de competições:</Text>
+          <Text style={styles.atletaText}>{competicoes}</Text>
+        </View>
+        <View style={styles.divider} />
+        <Text style={styles.sectionTitle}>Informações Adicionais</Text>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Ano de início das artes marciais:</Text>
+          <Text style={styles.atletaText}>{inicio}</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Ano de entrada para a Seleção:</Text>
+          <Text style={styles.atletaText}>{selecao}</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Histórico de artes marciais praticadas:</Text>
+          <Text style={styles.atletaText}>{artesmarciais}</Text>
+        </View>
+        <View style={styles.infoBlock}>
+          <Text style={styles.tituloAtleta}>Ocupação:</Text>
+          <Text style={styles.atletaText}>{trabalho}</Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -61,56 +77,78 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#1E1E1E',
     padding: 20,
   },
   detailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#C8C8C8',
+    backgroundColor: '#444444',
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   atletaImage: {
-    width: 100,
-    height: 150,
+    width: 120,
+    height: 180,
     borderRadius: 5,
     marginRight: 20,
   },
   infoContainer: {
     flex: 1,
-    backgroundColor: '#C8C8C8',
+    backgroundColor: '#444444',
     padding: 10,
-    borderRadius:10,
+    borderRadius: 10,
+  },
+  additionalInfoContainer: {
+    backgroundColor: '#444444',
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 15, height: 10 },
+    shadowOpacity: 0.8,
+    shadowRadius: 7,
+    elevation: 7,
   },
   atletaName: {
-    color: 'black',
+    color: 'white',
     fontSize: 18,
     marginBottom: 10,
   },
   atletaText: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
-    marginBottom: 15,
+    marginBottom: 10,
   },
   backButton: {
     marginLeft: 15,
   },
-  tituloatleta: {
-    color: 'black',
+  tituloAtleta: {
+    color: 'white',
     fontSize: 20,
-   /* textShadowColor: '#fff',  // Cor da sombra do texto (azul)
-    textShadowOffset: { width: 0, height: 0 },  // Deslocamento da sombra do texto
-    textShadowRadius: 5,  // Raio da sombra do texto*/
-    marginBottom: 3,
+    marginBottom: 5,
   },
-  informacaotecnica: {
-    fontSize:20,
-    marginBottom:10,
-    textShadowColor: '#67e8f9',
-    textShadowOffset: {width: -1, height:1},
-    textShadowRadius: 5
+  sectionTitle: {
+    fontSize: 22,
+    color: 'white',
+    marginBottom: 15,
+    textAlign: 'center',
+    textShadowColor: '#33FFFF',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
+  infoBlock: {
+    marginBottom: 15,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#C8C8C8',
+    marginVertical: 20,
   },
 });
 
