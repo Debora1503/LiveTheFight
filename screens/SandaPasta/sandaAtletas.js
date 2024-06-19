@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 const atletas = [
   { name: 'Bernardo Estevão',
-    idade: 25, 
-    foto: require('../../img/bernardo.jpg'),
+    idade: 33, 
+    foto: require('../../img/bernardoprincipal.jpg'),
     associacao: 'YMAA',
     peso: '75/80',
     altura: 1.79,
