@@ -60,13 +60,13 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#707070', // Cor de fundo escura
+    backgroundColor: '#1E1E1E', // Cor de fundo escura
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 50,
   },
   form: {
-    backgroundColor: '#A0A0A0', // Cor de fundo do formulário (claro)
+    backgroundColor: '#333333', // Cor de fundo do formulário (claro)
     padding: 20,
     borderRadius: 10,
     shadowColor: '#000',
@@ -79,22 +79,25 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '100%',
     maxWidth: 400, // Largura máxima do formulário
+    borderColor: '#33FFFF',
+    borderRadius: 10,
+    borderWidth: 2,
   },
   label: {
     fontSize: 16,
     marginBottom: 5,
     fontWeight: 'bold',
-    color: '#333', // Cor do texto dos labels (escuro)
+    color: '#fff', // Cor do texto dos labels (escuro)
   },
   input: {
     height: 40,
-    borderColor: '#ddd', // Cor da borda do input
-    borderWidth: 1,
     marginBottom: 15,
     paddingHorizontal: 10,
-    borderRadius: 5,
     backgroundColor: '#fff', // Cor de fundo dos inputs (claro)
     color: '#333', // Cor do texto dentro do input (escuro)
+    borderColor: '#33FFFF',
+    borderRadius: 10,
+    borderWidth: 2,
   },
   button: {
     marginTop: 10,
@@ -112,10 +115,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    borderColor: '#33FFFF',
+    borderRadius: 10,
+    borderWidth: 2,
   },
   buttonText: {
     fontSize: 18,
-    color: 'white', // Cor do texto do botão
+    color: '#33FFFF', // Cor do texto do botão
   },
 });
 

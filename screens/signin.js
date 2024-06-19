@@ -156,10 +156,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 60,
-    backgroundColor: '#707070',
+    backgroundColor: '#1E1E1E',
   },
   form: {
-    backgroundColor: '#EFEFEF', // Cor de fundo do formulário (claro)
+    backgroundColor: '#333333', // Cor de fundo do formulário (claro)
     padding: 20,
     borderRadius: 10,
     shadowColor: '#000',
@@ -172,12 +172,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '100%',
     maxWidth: 400, // Largura máxima do formulário
+    borderColor: '#33FFFF',
+    borderWidth: 2,
   },
   label: {
     fontSize: 16,
     marginBottom: 5,
     fontWeight: 'bold',
-    color: '#333', // Cor do texto dos labels (escuro)
+    color: '#fff', // Cor do texto dos labels (escuro)
   },
   input: {
     height: 40,
@@ -185,9 +187,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 15,
     paddingHorizontal: 10,
-    borderRadius: 5,
     backgroundColor: '#fff', // Cor de fundo dos inputs (claro)
     color: '#333', // Cor do texto dentro do input (escuro)
+    borderColor: '#33FFFF',
+    borderRadius: 5,
+    borderWidth: 2,
   },
   logo: {
     alignSelf: 'center', // Centralizando o logo horizontalmente
@@ -213,10 +217,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    borderColor: '#33FFFF',
+    borderRadius: 10,
+    borderWidth: 2,
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: '#33FFFF',
   },
 });
 
