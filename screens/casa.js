@@ -117,10 +117,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     marginBottom: 20,
-    color: 'white',
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
+    color: '#33FFFF',
+
   },
   slide: {
     backgroundColor: '#76c7c0',
@@ -130,6 +128,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+    borderColor: '#33FFFF',
+    borderWidth: 2,
   },
   fullSlideImage: {
     width: '100%',
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
     padding: 15,
     width: '100%',
     alignItems: 'center',
+    borderColor:'#33FFFF',
+    borderWidth: 2,
   },
   titulonuti: {
     fontSize: 22,
-    color: 'white',
-    textShadowColor: '#33FFFF',  // Cor da sombra do texto
-    textShadowOffset: { width: -1, height: 1 },  // Deslocamento da sombra do texto
-    textShadowRadius: 10,  // Raio da sombra do texto
+    color: '#33FFFF',
+    fontWeight:'bold',
     marginBottom: 10,
   },
   noticiaContainer: {
@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
   },
   destaque: {
     fontSize: 18,
+    color:'#121212',
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 15,
-    color: '#333',
+    color: '#121212',
   },
   GreciaSelecao: {
     width: 280, // Aumentando o tamanho da imagem
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 15,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: '#121212',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     width: '100%',
-    backgroundColor: '#ddd',
+    backgroundColor: '#33FFFF',
     marginVertical: 15,
   },
 });

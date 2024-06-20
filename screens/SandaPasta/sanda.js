@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import { DrawerActions } from '@react-navigation/native';
 
 const Sanda = ({ navigation }) => {
   React.useLayoutEffect(() => {
@@ -11,13 +10,20 @@ const Sanda = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const treinador = {
+    nome: 'John Doe',
+    idade: '45',
+    foto: require('../../img/treinador (1).png'),
+    associacao: 'Associação XYZ',
+    anoentrada: '2010',
+    artesmarciais: 'Kung Fu, Sanda',
+    formacoes: 'Formação em Educação Física, Faixa preta em Kung Fu',
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.openDrawer()}
-      >
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.openDrawer()}>
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
       <Text style={styles.titulo}>Sanda</Text>
@@ -26,7 +32,10 @@ const Sanda = ({ navigation }) => {
           <Image source={require('../../img/lutar (2).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Atletas</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaTreinador')}>
+        <TouchableOpacity 
+          style={styles.square} 
+          onPress={() => navigation.navigate('TreinadorDetail', { treinador })}
+        >
           <Image source={require('../../img/treinador (1).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Treinador</Text>
         </TouchableOpacity>
@@ -52,12 +61,9 @@ const styles = StyleSheet.create({
   },
   titulo: {
     textAlign: 'center',
-    color: 'white',
+    color: '#33FFFF',
     fontSize: 30,
     marginBottom: 30,
-    textShadowColor: '#33FFFF',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
   },
   menuButton: {
     position: 'absolute',
@@ -93,12 +99,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   squareText: {
-    color: 'white',
+    color: '#33FFFF',
     fontSize: 18,
-    fontWeight: 'bold',
-    textShadowColor: '#33FFFF',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
   },
 });
 

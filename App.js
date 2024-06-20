@@ -11,6 +11,7 @@ import HomePage from './screens/casa';
 import Treinadores from './screens/treinadores';
 import Sanda from './screens/SandaPasta/sanda';
 import SandaTreinador from './screens/SandaPasta/sandaTreinador';
+import TreinadorDetail from './screens/SandaPasta/TreinadorDetail';
 import SandaInfo from './screens/SandaPasta/sandainfo';
 import SandaEventos from './screens/SandaPasta/sandaEventos';
 import SandaAtletas from './screens/SandaPasta/sandaAtletas';
@@ -76,6 +77,23 @@ export default function App() {
             },
           }}
         />
+        <Stack.Screen
+        name="TreinadorDetail"
+        component={TreinadorDetail}
+        options={{
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerBackTitleVisible: false,
+          headerTintColor: 'white',
+          headerStyle:{
+            backgroundColor: 'gray',
+          },
+          headerTitleStyle:{
+            color: 'white',
+          },
+        }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
