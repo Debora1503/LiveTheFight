@@ -17,12 +17,30 @@ LocaleConfig.locales['pt'] = {
 LocaleConfig.defaultLocale = 'pt';
 
 const events = {
-  '2024-06-01': { marked: true, dotColor: 'red', description: 'Torneio Nacional de Sanda' },
-  '2024-06-15': { marked: true, dotColor: 'blue', description: 'Campeonato Regional' },
-  '2024-06-20': { marked: true, dotColor: 'green', description: 'Sessão de Treinamento Aberta' },
-  '2024-07-20': { marked: true, dotColor: 'green', description: 'Sessão de Treinamento Aberta' },
-
-  // Adicione mais eventos conforme necessário
+  '2022-11-10': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-11': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-12': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-13': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-14': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-15': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-11-16': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Grecia'},
+  '2022-12-10': { marked: true, dotColor: 'blue', description: 'Campeonato Junior'},
+  '2023-04-15': { marked: true, dotColor: 'blue', description: 'Torneio em Viana do Castelo'},
+  '2023-04-28': { marked: true, dotColor: 'blue', description: 'Campeonato Internacional Shuai Jiao em França'},
+  '2023-04-29': { marked: true, dotColor: 'blue', description: 'Campeonato Internacional Shuai Jiao em França'},
+  '2023-04-30': { marked: true, dotColor: 'blue', description: 'Campeonato Internacional Shuai Jiao em França'},
+  '2023-06-18': { marked: true, dotColor: 'blue', description: 'Treino da Seleção em Lisboa'},
+  '2023-07-15': { marked: true, dotColor: 'blue', description: 'Campeonato Nacional em São João da Madeira'},
+  '2023-08-05': { marked: true, dotColor: 'blue', description: 'Treino da Seleção em Valença'},
+  '2023-10-06': { marked: true, dotColor: 'blue', description: 'Treino da Seleção em Boticas'},
+  '2023-11-04': { marked: true, dotColor: 'blue', description: 'Campeonato Internacional em Valença'},
+  '2024-04-20': { marked: true, dotColor: 'blue', description: 'Campeonato Internacional na Maia'},
+  '2024-05-03': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Suecia'},
+  '2024-05-04': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Suecia'},
+  '2024-05-05': { marked: true, dotColor: 'blue', description: 'Campeonato Europeu na Suecia'},
+  '2024-10-18': { marked: true, dotColor: 'pink', description: 'Campeonato Internacional na Espanha'},
+  '2024-10-19': { marked: true, dotColor: 'pink', description: 'Campeonato Internacional na Espanha'},
+  '2024-10-20': { marked: true, dotColor: 'pink', description: 'Campeonato Internacional na Espanha'},
 };
 
 const SandaEventos = ({ navigation }) => {
@@ -35,7 +53,7 @@ const SandaEventos = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <StatusBar style="auto" />
       <TouchableOpacity
         style={styles.menuButton}
@@ -44,40 +62,58 @@ const SandaEventos = ({ navigation }) => {
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
       <Text style={styles.titulo}>Eventos de Sanda</Text>
-      <Calendar
-        markedDates={{
-          ...events,
-          [selectedDate]: { selected: true, marked: !!events[selectedDate], selectedColor: 'orange' }
-        }}
-        onDayPress={(day) => setSelectedDate(day.dateString)}
-        theme={{
-          calendarBackground: '#1E1E1E',
-          textSectionTitleColor: '#b6c1cd',
-          dayTextColor: '#d9e1e8',
-          todayTextColor: '#33FFFF',
-          selectedDayTextColor: '#ffffff',
-          monthTextColor: '#33FFFF',
-          indicatorColor: '#33FFFF',
-          selectedDayBackgroundColor: '#333333',
-          arrowColor: '#33FFFF',
-        }}
-      />
+      <View style={styles.calendarContainer}>
+        <Calendar
+          markedDates={{
+            ...events,
+            [selectedDate]: { selected: true, marked: !!events[selectedDate], selectedColor: 'orange' }
+          }}
+          onDayPress={(day) => setSelectedDate(day.dateString)}
+          theme={{
+            calendarBackground: '#1E1E1E',
+            textSectionTitleColor: '#b6c1cd',
+            dayTextColor: '#d9e1e8',
+            todayTextColor: '#33FFFF',
+            selectedDayTextColor: '#ffffff',
+            monthTextColor: '#33FFFF',
+            indicatorColor: '#33FFFF',
+            selectedDayBackgroundColor: '#333333',
+            arrowColor: '#33FFFF',
+          }}
+          style={styles.calendar}
+        />
+      </View>
       {selectedDate && events[selectedDate] && (
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>{selectedDate}</Text>
           <Text style={styles.text}>{events[selectedDate].description}</Text>
         </View>
       )}
-    </View>
+      <View style={styles.legendContainer}>
+        <View style={styles.legendItem}>
+          <View style={[styles.legendDot, { backgroundColor: 'blue' }]} />
+          <Text style={styles.legendText}>Campeonatos Passados</Text>
+        </View>
+        <View style={styles.legendItem}>
+          <View style={[styles.legendDot, { backgroundColor: 'purple' }]} />
+          <Text style={styles.legendText}>Treinos da Seleção</Text>
+        </View>
+        <View style={styles.legendItem}>
+          <View style={[styles.legendDot, { backgroundColor: 'pink' }]} />
+          <Text style={styles.legendText}>Campeonatos Futuros</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#1E1E1E',
     padding: 20,
     paddingTop: 60,
+    alignItems: 'center',
   },
   menuButton: {
     position: 'absolute',
@@ -89,6 +125,14 @@ const styles = StyleSheet.create({
     color: '#33FFFF',
     fontSize: 30,
     marginBottom: 30,
+  },
+  calendarContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  calendar: {
+    width: 400,
+    height: 400,
   },
   card: {
     backgroundColor: '#333333',
@@ -116,6 +160,26 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     textAlign: 'center',
+  },
+  legendContainer: {
+    marginTop: 20,
+    alignItems: 'flex-start',
+    width: '100%',
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  legendDot: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginRight: 10,
+  },
+  legendText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
