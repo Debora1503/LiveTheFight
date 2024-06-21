@@ -6,7 +6,7 @@ const TreinadorDetail = ({ route }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.detailsContainer}>
+      <View style={styles.card}>
         <Image source={treinador.foto} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.tituloinfo}>Nome:</Text>
@@ -15,24 +15,18 @@ const TreinadorDetail = ({ route }) => {
           <Text style={styles.textinfo}>{treinador.idade}</Text>
         </View>
       </View>
-      <View style={styles.additionalInfoContainer}>
+
+      <View style={[ styles.centeredCard]}>
+        <Text style={styles.sectionTitle}>Informações Tecnicas:</Text>
+        <Text style={styles.tituloinfo}>Associação:</Text>
+        <Text style={styles.textinfo}>{treinador.associacao}</Text>
+        <Text style={styles.tituloinfo}>Ano de Entrada:</Text>
+        <Text style={styles.textinfo}>{treinador.anoentrada}</Text>
         <Text style={styles.sectionTitle}>Informações Adicionais</Text>
-        <View style={styles.infoBlock}>
-          <Text style={styles.tituloinfo}>Associação:</Text>
-          <Text style={styles.textinfo}>{treinador.associacao}</Text>
-        </View>
-        <View style={styles.infoBlock}>
-          <Text style={styles.tituloinfo}>Ano de Entrada:</Text>
-          <Text style={styles.textinfo}>{treinador.anoentrada}</Text>
-        </View>
-        <View style={styles.infoBlock}>
-          <Text style={styles.tituloinfo}>Artes Marciais:</Text>
-          <Text style={styles.textinfo}>{treinador.artesmarciais}</Text>
-        </View>
-        <View style={styles.infoBlock}>
-          <Text style={styles.tituloinfo}>Formações:</Text>
-          <Text style={styles.textinfo}>{treinador.formacoes}</Text>
-        </View>
+        <Text style={styles.tituloinfo}>Artes Marciais:</Text>
+        <Text style={styles.textinfo}>{treinador.artesmarciais}</Text>
+        <Text style={styles.tituloinfo}>Formações:</Text>
+        <Text style={styles.textinfo}>{treinador.formacoes}</Text>
       </View>
     </ScrollView>
   );
@@ -46,19 +40,37 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
   },
-  detailsContainer: {
-    flexDirection: 'row',
+  card: {
+    flexDirection:'row',
     alignItems: 'center',
-    backgroundColor: '#444444',
-    padding: 10,
+    backgroundColor: '#333333',
     borderRadius: 10,
-    marginBottom: 20,
-    shadowColor: '#001',
+    padding: 20,
+    marginVertical: 10,
+    borderWidth: 2,
+    borderColor: '#33FFFF',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 5,
     elevation: 5,
+    width: '100%',
   },
+  centeredCard: {
+   // alignItems: 'center', // Center align all items in the card
+    backgroundColor:'#333333',
+    borderRadius:10,
+    padding:20,
+    marginVertical:10,
+    borderWidth:2,
+    borderColor:'#33FFFF',
+    shadowColor:'#000',
+    shadowOffset:{width:0, height:2},
+    shadowOpacity:0.8,
+    shadowRadius:5,
+    elevation:5,
+    width:'100%',
+},
   image: {
     width: 120,
     height: 180,
@@ -66,34 +78,28 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   infoContainer: {
+    justifyContent: 'center',
     flex: 1,
-    backgroundColor: '#444444',
-    padding: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 15, height: 10 },
-    shadowOpacity: 0.8,
-    shadowRadius: 7,
-    elevation: 7,
   },
   textinfo: {
     color: '#fff',
     fontSize: 16,
     marginBottom: 10,
+    textAlign: 'left',
   },
   tituloinfo: {
-    color: '#fff',
+    color: '#33FFFF',
     fontSize: 20,
     marginBottom: 5,
+    //fontWeight: 'bold',
+    textAlign: 'left',
   },
   sectionTitle: {
     fontSize: 22,
-    color: '#fff',
+    color: '#33FFFF',
     marginBottom: 15,
     textAlign: 'center',
-  },
-  infoBlock: {
-    marginBottom: 15,
+    fontWeight:'bold',
   },
 });
 
