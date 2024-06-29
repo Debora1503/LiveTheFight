@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Image, Alert } from 'react-native';
 import { firebase_auth } from '../firebase/firebaseconf';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Importar setDoc e doc
 
 const Signin = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
-        backgroundColor: '#707070', // Cor de fundo do header
+        backgroundColor: '#707070',
       },
-      headerTintColor: 'white', // Cor do texto do header
+      headerTintColor: 'white',
     });
   }, [navigation]);
 
@@ -23,30 +23,6 @@ const Signin = ({ navigation }) => {
 
   const auth = firebase_auth;
   const db = getFirestore();
-
-  const handleFirstNameChange = (text) => {
-    setFirstName(text);
-  };
-
-  const handleLastNameChange = (text) => {
-    setLastName(text);
-  };
-
-  const handleEmailChange = (text) => {
-    setEmail(text);
-  };
-
-  const handleNumberChange = (text) => {
-    setNumber(text);
-  };
-
-  const handleUsernameChange = (text) => {
-    setUsername(text);
-  };
-
-  const handlePasswordChange = (text) => {
-    setPassword(text);
-  };
 
   const handleSubmit = async () => {
     try {
@@ -64,7 +40,18 @@ const Signin = ({ navigation }) => {
         return;
       } else {
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
+        const user = response.user;
+
+        // Salvando os dados do usuário no Firestore
+        await setDoc(doc(db, 'users', user.uid), {
+          firstName,
+          lastName,
+          email,
+          number,
+          username,
+          userId: user.uid,
+        });
+
         Alert.alert(
           "Conta criada com sucesso!",
           "Faça login para continuar.",
@@ -89,7 +76,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite seu primeiro nome'
             style={styles.input}
             value={firstName}
-            onChangeText={handleFirstNameChange}
+            onChangeText={setFirstName}
           />
 
           <Text style={styles.label}>Último Nome:</Text>
@@ -97,7 +84,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite seu último nome'
             style={styles.input}
             value={lastName}
-            onChangeText={handleLastNameChange}
+            onChangeText={setLastName}
           />
 
           <Text style={styles.label}>Email:</Text>
@@ -105,7 +92,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite seu email'
             style={styles.input}
             value={email}
-            onChangeText={handleEmailChange}
+            onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
           />
@@ -115,7 +102,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite seu número de telefone'
             style={styles.input}
             value={number}
-            onChangeText={handleNumberChange}
+            onChangeText={setNumber}
             keyboardType='numeric'
           />
 
@@ -124,7 +111,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite seu username'
             style={styles.input}
             value={username}
-            onChangeText={handleUsernameChange}
+            onChangeText={setUsername}
             autoCapitalize="none"
           />
 
@@ -133,7 +120,7 @@ const Signin = ({ navigation }) => {
             placeholder='Digite sua senha'
             style={styles.input}
             value={password}
-            onChangeText={handlePasswordChange}
+            onChangeText={setPassword}
             secureTextEntry
           />
 
@@ -159,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1E1E1E',
   },
   form: {
-    backgroundColor: '#333333', // Cor de fundo do formulário (claro)
+    backgroundColor: '#333333',
     padding: 20,
     borderRadius: 10,
     shadowColor: '#000',
@@ -171,7 +158,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     width: '100%',
-    maxWidth: 400, // Largura máxima do formulário
+    maxWidth: 400,
     borderColor: '#33FFFF',
     borderWidth: 2,
   },
@@ -179,31 +166,31 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
     fontWeight: 'bold',
-    color: '#fff', // Cor do texto dos labels (escuro)
+    color: '#fff',
   },
   input: {
     height: 40,
-    borderColor: '#ccc', // Cor da borda do input
+    borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 15,
     paddingHorizontal: 10,
-    backgroundColor: '#fff', // Cor de fundo dos inputs (claro)
-    color: '#333', // Cor do texto dentro do input (escuro)
+    backgroundColor: '#fff',
+    color: '#333',
     borderColor: '#33FFFF',
     borderRadius: 5,
     borderWidth: 2,
   },
   logo: {
-    alignSelf: 'center', // Centralizando o logo horizontalmente
-    marginTop: 20, // Margem acima do logo
-    marginBottom: 20, // Margem abaixo do logo
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20,
     width: 170,
     height: 170,
-    resizeMode: 'contain', // Melhor ajuste para o tamanho do logo
+    resizeMode: 'contain',
   },
   button: {
     marginTop: 10,
-    backgroundColor: '#333', // Cor de fundo do botão (escuro)
+    backgroundColor: '#333',
     width: '100%',
     height: 40,
     justifyContent: 'center',

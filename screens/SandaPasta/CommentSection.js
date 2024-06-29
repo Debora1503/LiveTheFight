@@ -1,9 +1,7 @@
-// ./screens/SandaPasta/CommentSection.js
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
-import { db, firebase_auth } from '../../firebase/firebaseconf'; // Ajuste o caminho conforme necessário
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { db, firebase_auth } from '../../firebase/firebaseconf'; // Certifique-se de que o caminho está correto
+import { collection, addDoc, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const CommentSection = ({ eventId }) => {
@@ -12,8 +10,13 @@ const CommentSection = ({ eventId }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebase_auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(firebase_auth, async (currentUser) => {
+      if (currentUser) {
+        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+        setUser({ ...currentUser, ...userDoc.data() });
+      } else {
+        setUser(null);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -42,11 +45,11 @@ const CommentSection = ({ eventId }) => {
       text: comment,
       createdAt: new Date(),
       userId: user.uid,
-      userName: user.displayName || 'Anonymous', // You can save the user's name if available
+      userName: user.username || 'Anonymous',
     };
     try {
       await addDoc(collection(db, 'comments'), newComment);
-      setComments([...comments, newComment]);
+      setComments([...comments, { id: new Date().toISOString(), ...newComment }]);
       setComment('');
     } catch (error) {
       console.error("Error adding comment: ", error);
@@ -61,6 +64,7 @@ const CommentSection = ({ eventId }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.comment}>
+            <Text style={styles.commentUserName}>{item.userName}</Text>
             <Text style={styles.commentText}>{item.text}</Text>
           </View>
         )}
@@ -91,6 +95,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 10,
+  },
+  commentUserName: {
+    color: '#33FFFF',
+    fontWeight: 'bold',
   },
   commentText: {
     color: '#fff',
