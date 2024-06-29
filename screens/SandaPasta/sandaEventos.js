@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
+import CommentSection from '../SandaPasta/CommentSection';
 
 // Configure the calendar locale
 LocaleConfig.locales['pt'] = {
@@ -87,6 +88,7 @@ const SandaEventos = ({ navigation }) => {
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>{selectedDate}</Text>
           <Text style={styles.text}>{events[selectedDate].description}</Text>
+          <CommentSection eventId={selectedDate} />
         </View>
       )}
       <View style={styles.legendContainer}>
