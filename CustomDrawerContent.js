@@ -1,19 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { auth, db } from './firebase/firebaseconf';
+import { doc, getDoc } from 'firebase/firestore';
 
 function CustomDrawerContent(props) {
   const { navigation } = props;
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          console.log('Current user ID:', user.uid);
+          const userDoc = await getDoc(doc(db, 'users', user.uid));
+          if (userDoc.exists()) {
+            console.log('User data:', userDoc.data());
+            setUserData(userDoc.data());
+          } else {
+            console.log('No user data found');
+          }
+        } else {
+          console.log('No authenticated user found');
+        }
+      } catch (error) {
+        console.error("Error fetching user data: ", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
   return (
     <DrawerContentScrollView {...props} style={styles.drawerContent}>
       <View style={styles.header}>
-        {/* Cabeçalho personalizado */}
+        {userData ? (
+          <TouchableOpacity onPress={() => navigation.navigate('UserProfile')}>
+            <Text style={styles.userName}>{userData.firstName} {userData.lastName}</Text>
+          </TouchableOpacity>
+        ) : (
+          <Text style={styles.userName}>Loading...</Text>
+        )}
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('HomePage')} style={styles.item}>
         <Text style={styles.label}>HomePage</Text>
@@ -50,6 +82,10 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 20,
     alignItems: 'center',
+  },
+  userName: {
+    fontSize: 18,
+    color: '#FFFFFF',
   },
   item: {
     paddingVertical: 15,

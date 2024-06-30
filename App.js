@@ -17,6 +17,7 @@ import SandaEventos from './screens/SandaPasta/sandaEventos';
 import SandaAtletas from './screens/SandaPasta/sandaAtletas';
 import AtletaDetail from './screens/SandaPasta/AtletaDetail';
 import CustomDrawerContent from './CustomDrawerContent';
+import UserProfile from './screens/UserProfile';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -43,6 +44,7 @@ function CasaDrawer() {
       <Drawer.Screen name="SandaTreinador" component={SandaTreinador} />
       <Drawer.Screen name="SandaInfo" component={SandaInfo} />
       <Drawer.Screen name="SandaEventos" component={SandaEventos} />
+      <Drawer.Screen name="UserProfile" component={UserProfile} />
       <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
