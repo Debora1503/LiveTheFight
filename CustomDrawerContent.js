@@ -62,8 +62,8 @@ function CustomDrawerContent(props) {
           />
         </View>
       )}
-      <TouchableOpacity onPress={() => navigation.navigate('Treinadores')} style={styles.item}>
-        <Text style={styles.label}>Treinadores</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Competicoes')} style={styles.item}>
+        <Text style={styles.label}>Competicoes</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.item}>
         <Text style={styles.label}>LogOut</Text>

@@ -9,7 +9,7 @@ import Home from './screens/home';
 import Login from './screens/login';
 import Signin from './screens/signin';
 import HomePage from './screens/casa';
-import Treinadores from './screens/treinadores';
+import Competicoes from './screens/competicoes';
 import Sanda from './screens/SandaPasta/sanda';
 import SandaTreinador from './screens/SandaPasta/sandaTreinador';
 import TreinadorDetail from './screens/SandaPasta/TreinadorDetail';
@@ -41,7 +41,7 @@ function CasaDrawer() {
       }}
     >
       <Drawer.Screen name="HomePage" component={HomePage} />
-      <Drawer.Screen name="Treinadores" component={Treinadores} />
+      <Drawer.Screen name="Competicoes" component={Competicoes} />
       <Drawer.Screen name="Sanda" component={Sanda} />
       <Drawer.Screen name="SandaAtletas" component={SandaAtletas} />
       <Drawer.Screen name="SandaTreinador" component={SandaTreinador} />
