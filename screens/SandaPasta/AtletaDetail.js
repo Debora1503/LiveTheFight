@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 22,
-    color: 'white',
+    color: '#33FFFF',
     marginBottom: 15,
     textAlign: 'center',
-    textShadowColor: '#33FFFF',
+   /* textShadowColor: '#33FFFF',
     textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    textShadowRadius: 10,*/
   },
   infoBlock: {
     marginBottom: 15,

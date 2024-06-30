@@ -162,13 +162,13 @@ const styles = StyleSheet.create({
   },
   titulo: {
     textAlign: 'center',
-    color: 'white',
+    color: '#33FFFF',
     fontSize: 26,
     marginTop: 30,
-    fontWeight: 'bold',
-    textShadowColor: '#33FFFF',  
+   /* fontWeight: 'bold',
+   textShadowColor: '#33FFFF',  
     textShadowOffset: { width: -1, height: 1 },  
-    textShadowRadius: 10,  
+    textShadowRadius: 10,  */
   },
   listContainer: {
     marginTop: 50,
