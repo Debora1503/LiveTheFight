@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { firebase_auth, db } from '../firebase/firebaseconf';
 import { doc, getDoc } from 'firebase/firestore';
-import { Ionicons } from '@expo/vector-icons'; // Importing Ionicons for the hamburger menu icon
+import { Ionicons } from '@expo/vector-icons';
 
 const UserProfile = ({ navigation }) => {
   const [userData, setUserData] = useState(null);

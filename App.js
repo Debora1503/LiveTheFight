@@ -3,6 +3,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { LogBox } from 'react-native';
 
 import Home from './screens/home';
 import Login from './screens/login';
@@ -18,6 +19,8 @@ import SandaAtletas from './screens/SandaPasta/sandaAtletas';
 import AtletaDetail from './screens/SandaPasta/AtletaDetail';
 import CustomDrawerContent from './CustomDrawerContent';
 import UserProfile from './screens/UserProfile';
+
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -44,7 +47,13 @@ function CasaDrawer() {
       <Drawer.Screen name="SandaTreinador" component={SandaTreinador} />
       <Drawer.Screen name="SandaInfo" component={SandaInfo} />
       <Drawer.Screen name="SandaEventos" component={SandaEventos} />
-      <Drawer.Screen name="UserProfile" component={UserProfile} />
+      <Drawer.Screen 
+        name="UserProfile" 
+        component={UserProfile} 
+        options={{
+          headerShown: false,  // Hide the header for UserProfile
+        }} 
+      />
       <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
@@ -80,22 +89,21 @@ export default function App() {
           }}
         />
         <Stack.Screen
-        name="TreinadorDetail"
-        component={TreinadorDetail}
-        options={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerBackTitleVisible: false,
-          headerTintColor: 'white',
-          headerStyle:{
-            backgroundColor: 'gray',
-          },
-          headerTitleStyle:{
-            color: 'white',
-          },
-        }}
+          name="TreinadorDetail"
+          component={TreinadorDetail}
+          options={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerBackTitleVisible: false,
+            headerTintColor: 'white',
+            headerStyle:{
+              backgroundColor: 'gray',
+            },
+            headerTitleStyle:{
+              color: 'white',
+            },
+          }}
         />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
