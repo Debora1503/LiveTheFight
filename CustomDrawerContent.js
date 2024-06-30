@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { auth, db } from './firebase/firebaseconf';
+import { firebase_auth, db } from './firebase/firebaseconf';
 import { doc, getDoc } from 'firebase/firestore';
 
 function CustomDrawerContent(props) {
@@ -16,7 +16,7 @@ function CustomDrawerContent(props) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const user = auth.currentUser;
+        const user = firebase_auth.currentUser;
         if (user) {
           console.log('Current user ID:', user.uid);
           const userDoc = await getDoc(doc(db, 'users', user.uid));
