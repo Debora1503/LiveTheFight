@@ -1,11 +1,12 @@
 // ./screens/UserProfile.js
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { firebase_auth, db } from '../firebase/firebaseconf';
 import { doc, getDoc } from 'firebase/firestore';
+import { Ionicons } from '@expo/vector-icons'; // Importing Ionicons for the hamburger menu icon
 
-const UserProfile = () => {
+const UserProfile = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -37,6 +38,9 @@ const UserProfile = () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.openDrawer()}>
+        <Ionicons name="menu" size={30} color="#FFFFFF" />
+      </TouchableOpacity>
       <View style={styles.profileHeader}>
         <View style={styles.profileIcon}>
           <Text style={styles.profileIconText}>{initials}</Text>
@@ -66,6 +70,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#1E1E1E',
+  },
+  menuButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
   },
   profileHeader: {
     alignItems: 'center',
