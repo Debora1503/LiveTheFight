@@ -10,11 +10,11 @@ import {
   TextInput,
   Button,
   FlatList,
-  Alert // Importar o Alert para exibir mensagens de erro
+  Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { db, firebase_auth } from '../firebase/firebaseconf'; // Verifique o caminho
-import { collection, addDoc, query, where, getDocs, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, where, onSnapshot, doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const Competicoes = ({ navigation }) => {
@@ -23,6 +23,7 @@ const Competicoes = ({ navigation }) => {
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState(null);
   const [eventId, setEventId] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -72,11 +73,11 @@ const Competicoes = ({ navigation }) => {
       text: comment,
       createdAt: new Date(),
       userId: user.uid,
-      userName: user.displayName || 'Anonymous', // Verifique se o nome de usuário está disponível
+      userName: user.username || 'Anonymous', // Certifique-se de que user.displayName está disponível
     };
 
     try {
-      console.log("Submitting comment:", newComment); // Adicione um log para verificar os dados do comentário
+      console.log("Submitting comment:", newComment); // Adicione log para depuração
       await addDoc(collection(db, 'comments'), newComment);
       setComment(''); // Limpa o campo de entrada
     } catch (error) {
@@ -99,7 +100,7 @@ const Competicoes = ({ navigation }) => {
       key={item.id}
       style={[
         styles.cardItem,
-        { backgroundColor: index % 2 === 0 ? '#1E90FF' : '#FF4500' }, // Alternando as cores de fundo
+        { backgroundColor: index % 2 === 0 ? '#1E90FF' : '#FF4500' },
       ]}
     >
       <Image source={item.image} style={styles.image} />
@@ -107,18 +108,14 @@ const Competicoes = ({ navigation }) => {
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.record}>Lutas Ganhas: {item.won}</Text>
         <Text style={styles.record}>Lutas Perdidas: {item.lost}</Text>
-        <TouchableOpacity onPress={() => {
-          setEventId(item.id);
-          setModalVisible(true);
-        }}>
-          <Text style={styles.commentButton}>Ver Comentários</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
 
   const closeModal = () => {
     setModalVisible(false);
+    setEventId(null); // Limpa o ID do evento ao fechar o modal
+    setSelectedEvent(null); // Limpa o evento selecionado
   };
 
   const renderComment = ({ item }) => {
@@ -127,7 +124,7 @@ const Competicoes = ({ navigation }) => {
       <View
         style={[
           styles.commentContainer,
-          { alignSelf: isUserComment ? 'flex-end' : 'flex-start' }, // Alinha os comentários à direita para o usuário e à esquerda para outros
+          { alignSelf: isUserComment ? 'flex-end' : 'flex-start' },
         ]}
       >
         <View
@@ -139,7 +136,7 @@ const Competicoes = ({ navigation }) => {
           <Text
             style={[
               styles.commentUserName,
-              { color: '#0000FF' }, // Nome do usuário em azul
+              { color: isUserComment ? '#0000FF' : '#FFD700' }, // Azul para o usuário e dourado para outros
             ]}
           >
             {item.userName}
@@ -158,6 +155,7 @@ const Competicoes = ({ navigation }) => {
       >
         <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
+
       <Text style={styles.header}>Competições</Text>
       <ScrollView contentContainerStyle={styles.cardContainer}>
         <View style={styles.separatorContainer}>
@@ -177,7 +175,16 @@ const Competicoes = ({ navigation }) => {
         ))}
       </ScrollView>
 
-      <TouchableOpacity style={styles.moreButton} onPress={() => setModalVisible(true)}>
+      <TouchableOpacity
+        style={styles.moreButton}
+        onPress={() => {
+          if (data.length > 0) {
+            setEventId(data[0].id); // Define um evento padrão para mostrar no modal, se necessário
+            setSelectedEvent(data[0]); // Define um evento padrão para mostrar no modal, se necessário
+            setModalVisible(true);
+          }
+        }}
+      >
         <Ionicons name="ellipsis-vertical" size={32} color="white" />
       </TouchableOpacity>
 
@@ -188,11 +195,12 @@ const Competicoes = ({ navigation }) => {
         onRequestClose={closeModal}
       >
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Comentários</Text>
+          <Text style={styles.modalText}>Comentários para {selectedEvent?.name}</Text>
           <FlatList
             data={comments}
             keyExtractor={(item) => item.id}
             renderItem={renderComment}
+            contentContainerStyle={styles.commentList}
           />
           <TextInput
             style={styles.input}
@@ -212,40 +220,41 @@ const Competicoes = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212', // Cor de fundo escura
+    backgroundColor: '#121212',
     paddingTop: 60,
     paddingHorizontal: 10,
   },
   menuButton: {
     position: 'absolute',
-    top: 40,
-    left: 10,
-    zIndex: 1,
+    top: 30,
+    left: 20,
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
-    textAlign: 'center',
     marginVertical: 20,
+    textAlign: 'center',
   },
   cardContainer: {
     flexGrow: 1,
   },
   cardItem: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginVertical: 10,
     padding: 10,
     borderRadius: 10,
+    alignItems: 'center',
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 10,
   },
   cardContent: {
     flex: 1,
-    marginLeft: 10,
+    justifyContent: 'center',
   },
   name: {
     fontSize: 18,
@@ -253,74 +262,72 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   record: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  commentButton: {
-    color: '#33FFFF',
-    marginTop: 10,
     fontSize: 16,
-  },
-  separatorContainer: {
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  separator: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#fff',
-    width: '80%',
-    marginTop: 5,
-  },
-  separatorText: {
-    fontSize: 16,
-    color: '#fff',
-  },
-  modalView: {
-    flex: 1,
-    marginTop: 22,
-    backgroundColor: '#1E1E1E',
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalText: {
-    fontSize: 18,
-    color: '#fff',
-    marginBottom: 10,
-  },
-  input: {
-    height: 40,
-    borderColor: '#33FFFF',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    color: '#fff',
-    marginBottom: 10,
-    width: '100%',
-  },
-  commentContainer: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    width: '100%',
-  },
-  commentBubble: {
-    borderRadius: 10,
-    padding: 10,
-    maxWidth: '80%',
-  },
-  commentUserName: {
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  commentText: {
     color: '#fff',
   },
   moreButton: {
     position: 'absolute',
     bottom: 30,
-    right: 20,
-    zIndex: 1,
+    right: 30,
+    backgroundColor: '#ff6347',
+    borderRadius: 50,
+    padding: 10,
+  },
+  separatorContainer: {
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  separatorText: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  separator: {
+    width: '80%',
+    height: 1,
+    backgroundColor: '#fff',
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    padding: 20,
+  },
+  modalText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 10,
+  },
+  commentList: {
+    flexGrow: 1,
+    width: '100%',
+  },
+  commentContainer: {
+    marginBottom: 10,
+    padding: 10,
+  },
+  commentBubble: {
+    padding: 10,
+    borderRadius: 10,
+    maxWidth: '80%',
+  },
+  commentUserName: {
+    fontWeight: 'bold',
+  },
+  commentText: {
+    marginTop: 5,
+    color: '#fff',
+  },
+  input: {
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: '100%',
+    color: '#fff',
   },
 });
 
