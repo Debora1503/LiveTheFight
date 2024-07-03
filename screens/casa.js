@@ -8,9 +8,12 @@ import PropTypes from 'prop-types';
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 const entries = [
-  { title: 'Slide 1', text: 'This is the first slide.', image: require('../img/GreciaSelecao.jpg') },
-  { title: 'Slide 2', text: 'This is the second slide.' },
-  { title: 'Slide 3', text: 'This is the third slide.' },
+  { title: 'Slide 1', text: 'This is the first slide.', image: require('../img/diogoaula.png') },
+  { title: 'Slide 2', text: 'This is the second slide.', image: require('../img/sparringday3.jpeg') },
+  { title: 'Slide 3', text: 'This is the second slide.', image: require('../img/acampamento.jpeg') },
+  { title: 'Slide 4', text: 'This is the third slide.', image: require('../img/segundolugar.jpeg') },
+  { title: 'Slide 5', text: 'This is the third slide.', image: require('../img/sparringday.jpeg') },
+  { title: 'Slide 6', text: 'This is the second slide.', image: require('../img/bernardo.jpg') },
 ];
 
 const Casa = ({ navigation }) => {
@@ -63,27 +66,44 @@ const Casa = ({ navigation }) => {
           {/* Notícia 1 */}
           <View style={styles.noticiaContainer}>
             <Text style={styles.destaque}>Campeonato Europeu</Text>
-            <Text style={styles.noticiaText}>Decorrerá na Suécia de 2 a 6 de Maio. Portugal conquistou 14 medalhas, incluindo 1 primeiro lugar em Sanda Light.</Text>
-            <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
+            <Text style={styles.noticiaText}>Decorreu na Suécia de 2 a 6 de Maio. Portugal conquistou 14 medalhas, incluindo 1 primeiro lugar em Sanda Light.</Text>
+            <Image source={require('../img/euro2024.jpeg')} style={styles.GreciaSelecao} />
           </View>
           
           <View style={styles.divider} />
 
           {/* Notícia 2 */}
           <View style={styles.noticiaContainer}>
-            <Text style={styles.destaque}>Outro Título</Text>
-            <Text style={styles.noticiaText}>Descrição da notícia ou resumo sucinto do evento.</Text>
-            <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
+            <Text style={styles.destaque}>Gala do Desporto</Text>
+            <Text style={styles.noticiaText}>Atletas da YMAA receberam trofeus distribuidos pela Amadora Desporto pelo seu desempenho no ano de 2022-2023 por reconhecimento nacional e internacional em competições.</Text>
+            <Image source={require('../img/galadesporto2023.jpeg')} style={styles.GreciaSelecao} />
           </View>
           
           <View style={styles.divider} />
 
           {/* Notícia 3 */}
           <View style={styles.noticiaContainer}>
-            <Text style={styles.destaque}>Mais um título</Text>
-            <Text style={styles.noticiaText}>Descrição da notícia ou resumo sucinto do evento.</Text>
+            <Text style={styles.destaque}>Campeonato Mundial de Sanda</Text>
+            <Text style={styles.noticiaText}>Decorreu nos Estados Unidos em Fort Worth de 16-21 de Novembro de 2023</Text>
+            <Image source={require('../img/mundiais.png')} style={styles.GreciaSelecao} />
+          </View>
+          <View style={styles.divider} />
+
+          {/* Notícia 4 */}
+          <View style={styles.noticiaContainer}>
+            <Text style={styles.destaque}>Campeonato internacional Shoubo</Text>
+            <Text style={styles.noticiaText}>Decorreu em França de 29-30 de Abril de 2023, a equipa conquistou 4 medalhas, incluindo 1 primeiro lugar, 1 segundo lugar e 2 terceiros</Text>
+            <Image source={require('../img/medalhasfrança.jpg')} style={styles.GreciaSelecao} />
+          </View>
+          <View style={styles.divider} />
+
+          {/*Noticia 5 */}
+          <View style={styles.noticiaContainer}>
+            <Text style={styles.destaque}>Campeonato Europeu Grecia</Text>
+            <Text style={styles.noticiaText}>Decorreu na Grecia em Atenas de 10-16 de Novembro de 2022.</Text>
             <Image source={require('../img/GreciaSelecao.jpg')} style={styles.GreciaSelecao} />
           </View>
+
         </View>
       </ScrollView>
     </View>
