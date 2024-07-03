@@ -13,9 +13,9 @@ const Sanda = ({ navigation }) => {
   const treinador = {
     nome: 'John Doe',
     idade: '45',
-    foto: require('../../img/treinador (1).png'),
+    foto: require('../../img/mestre.jpg'),
     associacao: 'Associação XYZ',
-    anoentrada: '2010',
+    anoentrada: '2010', 
     artesmarciais: 'Kung Fu, Sanda',
     formacoes: 'Formação em Educação Física, Faixa preta em Kung Fu',
   };
@@ -36,7 +36,7 @@ const Sanda = ({ navigation }) => {
           style={styles.square} 
           onPress={() => navigation.navigate('TreinadorDetail', { treinador })}
         >
-          <Image source={require('../../img/treinador (1).png')} style={styles.squareImage} />
+          <Image source={require('../../img/mestre.jpg')} style={styles.squareImage} />
           <Text style={styles.squareText}>Treinador</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaInfo')}>
