@@ -7,7 +7,7 @@ const treinador = [
   {
     nome: 'John Doe',
     idade: '45',
-    foto: require('../../img/treinador (1).png'),
+    foto: require('../../img/mestre.jpg'),
     associacao: 'Associação XYZ',
     anoentrada: '2010',
     artesmarciais: 'Kung Fu, Sanda',
