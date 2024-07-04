@@ -19,6 +19,7 @@ import SandaAtletas from './screens/SandaPasta/sandaAtletas';
 import AtletaDetail from './screens/SandaPasta/AtletaDetail';
 import CustomDrawerContent from './CustomDrawerContent';
 import UserProfile from './screens/UserProfile';
+import ClothingPage from './screens/ClothingPage';
 
 LogBox.ignoreAllLogs(); // Ignore all log notifications
 
@@ -54,6 +55,7 @@ function CasaDrawer() {
           headerShown: false,  // Hide the header for UserProfile
         }} 
       />
+      <Drawer.Screen name="Roupa" component={ClothingPage} />
       <Drawer.Screen name="LogOut" component={Home} />
     </Drawer.Navigator>
   );
@@ -104,6 +106,7 @@ export default function App() {
             },
           }}
         />
+        <Stack.Screen name="Roupa" component={ClothingPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
