@@ -31,12 +31,14 @@ const styles = StyleSheet.create({
   card: {
     margin: 10,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#A8A8A8', // Cor de fundo semelhante à `Casa`
     borderRadius: 10,
-    shadowColor: '#000',
+    borderColor: '#33FFFF', // Bordas semelhantes à `Casa`
+    borderWidth: 2,
+    shadowColor: '#121212',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
     elevation: 5,
     alignItems: 'center',
   },
@@ -44,11 +46,13 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 10,
+    resizeMode: 'cover',
   },
   title: {
     marginTop: 10,
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#121212', // Cor de texto semelhante à `Casa`
   },
   nextButton: {
     marginTop: 10,

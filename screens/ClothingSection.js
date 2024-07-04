@@ -10,7 +10,7 @@ const ClothingSection = ({ title, data }) => {
       <FlatList
         data={data}
         renderItem={({ item }) => <ClothingCard item={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
       />
@@ -21,12 +21,13 @@ const ClothingSection = ({ title, data }) => {
 const styles = StyleSheet.create({
   section: {
     marginVertical: 20,
+    paddingLeft: 10,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#33FFFF', // Cor do texto para combinar com o título das notícias na `Casa`
     marginBottom: 10,
-    marginLeft: 10,
   },
 });
 

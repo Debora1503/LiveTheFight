@@ -63,17 +63,17 @@ const shirtsData = [
 
 const shortsData = [
   {
-    id: '3',
+    id: '6',
     title: 'Calção 1',
     images: [calcao1Img1, calcao1Img2],
   },
   {
-    id: '4',
+    id: '7',
     title: 'Calção 2',
     images: [calcao1Img3, calcao1Img4],
   },
   {
-    id: '5',
+    id: '8',
     title: 'Calção 3',
     images: [calcao1Img5, calcao1Img6],
   },
@@ -83,7 +83,7 @@ const shortsData = [
 
 const pantsData = [
   {
-    id: '1',
+    id: '9',
     title: 'Calça 1',
     images: [calca1Img1, calca1Img2],
   },
@@ -92,7 +92,7 @@ const pantsData = [
 
 const jacketsData = [
   {
-    id: '1',
+    id: '10',
     title: 'Casaco 1',
     images: [casaco1Img1, casaco1Img2],
   },
