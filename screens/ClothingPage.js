@@ -1,7 +1,7 @@
 // src/components/ClothingPage.js
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import ClothingSection from './ClothingSection';
+import ClothingSection from '../screens/ClothingSection';
 import { shirtsData, shortsData, pantsData, jacketsData } from './data/data';
 
 const ClothingPage = () => {

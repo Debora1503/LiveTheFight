@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { LogBox } from 'react-native';
 
+import { LikesProvider } from './screens/data/LikesContext';
+
 import Home from './screens/home';
 import Login from './screens/login';
 import Signin from './screens/signin';
@@ -63,51 +65,53 @@ function CasaDrawer() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signin" component={Signin} />
-        <Stack.Screen name="Casa" component={CasaDrawer} options={{ headerShown: false }} />
-        <Stack.Screen name="Sanda" component={Sanda} />
-        <Stack.Screen name="SandaTreinador" component={SandaTreinador} options={{ headerShown: false }} />
-        <Stack.Screen name="SandaAtletas" component={SandaAtletas} options={{ headerShown: false }} />
-        <Stack.Screen name="SandaInfo" component={SandaInfo} options={{ headerShown: false }} />
-        <Stack.Screen name="SandaEventos" component={SandaEventos} options={{ headerShown: false }} />
-        <Stack.Screen
-          name="AtletaDetail"
-          component={AtletaDetail}
-          options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerBackTitleVisible: false,
-            headerTintColor: 'white',
-            headerStyle: {
-              backgroundColor: 'gray',
-            },
-            headerTitleStyle: {
-              color: 'white',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="TreinadorDetail"
-          component={TreinadorDetail}
-          options={{
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerBackTitleVisible: false,
-            headerTintColor: 'white',
-            headerStyle:{
-              backgroundColor: 'gray',
-            },
-            headerTitleStyle:{
-              color: 'white',
-            },
-          }}
-        />
-        <Stack.Screen name="Roupa" component={ClothingPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <LikesProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signin" component={Signin} />
+          <Stack.Screen name="Casa" component={CasaDrawer} options={{ headerShown: false }} />
+          <Stack.Screen name="Sanda" component={Sanda} />
+          <Stack.Screen name="SandaTreinador" component={SandaTreinador} options={{ headerShown: false }} />
+          <Stack.Screen name="SandaAtletas" component={SandaAtletas} options={{ headerShown: false }} />
+          <Stack.Screen name="SandaInfo" component={SandaInfo} options={{ headerShown: false }} />
+          <Stack.Screen name="SandaEventos" component={SandaEventos} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="AtletaDetail"
+            component={AtletaDetail}
+            options={{
+              headerShown: true,
+              headerTitleAlign: 'center',
+              headerBackTitleVisible: false,
+              headerTintColor: 'white',
+              headerStyle: {
+                backgroundColor: 'gray',
+              },
+              headerTitleStyle: {
+                color: 'white',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="TreinadorDetail"
+            component={TreinadorDetail}
+            options={{
+              headerShown: true,
+              headerTitleAlign: 'center',
+              headerBackTitleVisible: false,
+              headerTintColor: 'white',
+              headerStyle:{
+                backgroundColor: 'gray',
+              },
+              headerTitleStyle:{
+                color: 'white',
+              },
+            }}
+          />
+          <Stack.Screen name="Roupa" component={ClothingPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </LikesProvider>
   );
 }

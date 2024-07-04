@@ -1,19 +1,17 @@
-// src/components/ClothingCard.js
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LikesContext } from './data/LikesContext';
 
 const ClothingCard = ({ item }) => {
-  const [liked, setLiked] = useState(false);
+  const { likes, toggleLike } = useContext(LikesContext);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const handleLike = () => {
-    setLiked(!liked);
-  };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.images.length);
   };
+
+  const isLiked = likes[item.id];
 
   return (
     <View style={styles.card}>
@@ -22,8 +20,8 @@ const ClothingCard = ({ item }) => {
       <TouchableOpacity onPress={handleNextImage} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Next Image</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleLike} style={styles.likeButton}>
-        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={24} color={liked ? 'red' : 'gray'} />
+      <TouchableOpacity onPress={() => toggleLike(item.id)} style={styles.likeButton}>
+        <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={24} color={isLiked ? 'red' : 'gray'} />
       </TouchableOpacity>
     </View>
   );
