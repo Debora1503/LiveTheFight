@@ -36,7 +36,7 @@ const Sanda = ({ navigation }) => {
           style={styles.square} 
           onPress={() => navigation.navigate('TreinadorDetail', { treinador })}
         >
-          <Image source={require('../../img/mestre.jpg')} style={styles.squareImage} />
+          <Image source={require('../../img/treinador (1).png')} style={styles.squareImage} />
           <Text style={styles.squareText}>Treinador</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.square} onPress={() => navigation.navigate('SandaInfo')}>
