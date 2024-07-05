@@ -28,7 +28,7 @@ const Competicoes = ({ navigation }) => {
   const data = [
     { id: '1', name: 'Bernardo', won: 10, lost: 2, image: require('../img/bernardo.jpg') },
     { id: '2', name: 'Joaquim', won: 8, lost: 3, image: require('../img/do-utilizador.png') },
-    { id: '3', name: 'Débora', won: 15, lost: 5, image: require('../img/debora.jpg') },
+    { id: '3', name: 'Débora', won: 15, lost: 5, image: require('../img/atletas/debora.jpg') },
     { id: '4', name: 'Carla', won: 12, lost: 4, image: require('../img/do-utilizador.png') },
     { id: '5', name: 'Tiago', won: 9, lost: 1, image: require('../img/do-utilizador.png') },
     { id: '6', name: 'Diogo', won: 14, lost: 6, image: require('../img/diogo.jpg') },
