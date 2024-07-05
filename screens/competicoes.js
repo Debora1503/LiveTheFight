@@ -13,17 +13,10 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { db, firebase_auth } from '../firebase/firebaseconf'; // Verifique o caminho
-import { collection, addDoc, query, where, onSnapshot, doc, getDoc } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
+
+
 
 const Competicoes = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);
-  const [user, setUser] = useState(null);
-  const [eventId, setEventId] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -31,60 +24,6 @@ const Competicoes = ({ navigation }) => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebase_auth, async (currentUser) => {
-      if (currentUser) {
-        try {
-          const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-          setUser({ ...currentUser, ...userDoc.data() });
-        } catch (error) {
-          console.error("Error fetching user data: ", error);
-          Alert.alert("Erro", "Não foi possível buscar os dados do usuário.");
-        }
-      } else {
-        setUser(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (eventId) {
-      const q = query(collection(db, 'comments'), where('eventId', '==', eventId));
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const fetchedComments = [];
-        querySnapshot.forEach((doc) => {
-          fetchedComments.push({ id: doc.id, ...doc.data() });
-        });
-        setComments(fetchedComments);
-      }, (error) => {
-        console.error("Error fetching comments: ", error);
-        Alert.alert("Erro", "Não foi possível buscar os comentários.");
-      });
-      return () => unsubscribe();
-    }
-  }, [eventId]);
-
-  const handleCommentSubmit = async () => {
-    if (comment.trim() === '' || !user || !eventId) return;
-
-    const newComment = {
-      eventId,
-      text: comment,
-      createdAt: new Date(),
-      userId: user.uid,
-      userName: user.username || 'Anonymous', // Certifique-se de que user.displayName está disponível
-    };
-
-    try {
-      console.log("Submitting comment:", newComment); // Adicione log para depuração
-      await addDoc(collection(db, 'comments'), newComment);
-      setComment(''); // Limpa o campo de entrada
-    } catch (error) {
-      console.error("Error adding comment: ", error);
-      Alert.alert("Erro", "Não foi possível enviar o comentário.");
-    }
-  };
 
   const data = [
     { id: '1', name: 'Bernardo', won: 10, lost: 2, image: require('../img/bernardo.jpg') },
@@ -175,45 +114,6 @@ const Competicoes = ({ navigation }) => {
           </React.Fragment>
         ))}
       </ScrollView>
-
-      <TouchableOpacity
-        style={styles.moreButton}
-        onPress={() => {
-          if (data.length > 0) {
-            setEventId(data[0].id); // Define um evento padrão para mostrar no modal, se necessário
-            setSelectedEvent(data[0]); // Define um evento padrão para mostrar no modal, se necessário
-            setModalVisible(true);
-          }
-        }}  
-      >
-        <Ionicons name="ellipsis-vertical" size={32} color="white" />
-      </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={closeModal}
-      >
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>Comentários para {selectedEvent?.name}</Text>
-          <FlatList
-            data={comments}
-            keyExtractor={(item) => item.id}
-            renderItem={renderComment}
-            contentContainerStyle={styles.commentList}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Escreva seu comentário"
-            placeholderTextColor="#999"
-            value={comment}
-            onChangeText={setComment}
-          />
-          <Button title="Enviar" onPress={handleCommentSubmit} disabled={!user || !eventId} />
-          <Button title="Fechar" onPress={closeModal} />
-        </View>
-      </Modal>
     </View>
   );
 };
