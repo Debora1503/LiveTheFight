@@ -26,11 +26,7 @@ import calcao1Img4 from '../../img/calcoesback2.png';
 import calcao1Img5 from '../../img/calcoes3.png';
 import calcao1Img6 from '../../img/calcoesback3.png';
 
-import calca1Img1 from '../../img/backblack1.png';
-import calca1Img2 from '../../img/backblack1.png';
 
-import casaco1Img1 from '../../img/backblack1.png';
-import casaco1Img2 from '../../img/backblack1.png';
 
 const shirtsData = [
   {
@@ -81,22 +77,4 @@ const shortsData = [
 ];
 
 
-const pantsData = [
-  {
-    id: '9',
-    title: 'Calça 1',
-    images: [calca1Img1, calca1Img2],
-  },
-  // ... more data
-];
-
-const jacketsData = [
-  {
-    id: '10',
-    title: 'Casaco 1',
-    images: [casaco1Img1, casaco1Img2],
-  },
-  // ... more data
-];
-
-export { shirtsData, shortsData, pantsData, jacketsData };
+export { shirtsData, shortsData };
