@@ -11,13 +11,25 @@ const Sanda = ({ navigation }) => {
   }, [navigation]);
 
   const treinador = {
-    nome: 'John Doe',
-    idade: '45',
+    nome: 'Pedro Rodrigues',
+    idade: '54',
     foto: require('../../img/mestre.jpg'),
-    associacao: 'Associação XYZ',
-    anoentrada: '2010', 
+    associacao: 'Associação YMAA',
+    anoentrada: '1985',
     artesmarciais: 'Kung Fu, Sanda',
-    formacoes: 'Formação em Educação Física, Faixa preta em Kung Fu',
+    formacoes: 'Formação em Educação Física, e mestre de Kung Fu',
+    biografia: 'Pedro Rodrigues é mestre de artes marciais com mais de 30 anos de experiência. Começou a sua jornada no Kung Fu aos 15 anos e desde então dedicou a sua vida ao ensino e prática de artes marciais.',
+    conquistas: [
+      'Campeão Nacional de Kung Fu (2005, 2008)',
+      'Treinador do Ano (2012, 2016)',
+      'Medalha de Ouro no Campeonato Internacional de Sanda (2014)',
+    ],
+    alunosNotaveis: [
+      { nome: 'Diogo Rodrigues', descricao: 'Campeão Nacional de Sanda, Campeão Europeu e treinador de Sanda' },
+    ],
+    contato: {
+      email: 'pedro.rodrigues@associacaoymaa.com',
+    },
   };
 
   return (

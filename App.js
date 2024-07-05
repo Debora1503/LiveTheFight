@@ -48,6 +48,7 @@ function CasaDrawer() {
       <Drawer.Screen name="Sanda" component={Sanda} />
       <Drawer.Screen name="SandaAtletas" component={SandaAtletas} />
       <Drawer.Screen name="SandaTreinador" component={SandaTreinador} />
+      <Drawer.Screen name="TreinadorDetail" component={TreinadorDetail} />
       <Drawer.Screen name="SandaInfo" component={SandaInfo} />
       <Drawer.Screen name="SandaEventos" component={SandaEventos} />
       <Drawer.Screen 

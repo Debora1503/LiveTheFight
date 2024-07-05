@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 const treinador = [
   {
     nome: 'John Doe',
-    idade: '45',
+    idade: '50',
     foto: require('../../img/mestre.jpg'),
     associacao: 'Associação XYZ',
     anoentrada: '2010',

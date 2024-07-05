@@ -1,33 +1,63 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
 
-const TreinadorDetail = ({ route }) => {
+const TreinadorDetail = ({ route, navigation }) => {
   const { treinador } = route.params;
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+
+  const Card = ({ title, children }) => {
+    return (
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <View style={styles.cardContent}>
+          {children}
+        </View>
+      </View>
+    );
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.card}>
-        <Image source={treinador.foto} style={styles.image} />
-        <View style={styles.infoContainer}>
-          <Text style={styles.tituloinfo}>Nome:</Text>
-          <Text style={styles.textinfo}>{treinador.nome}</Text>
-          <Text style={styles.tituloinfo}>Idade:</Text>
-          <Text style={styles.textinfo}>{treinador.idade}</Text>
-        </View>
-      </View>
-
-      <View style={[ styles.centeredCard]}>
-        <Text style={styles.sectionTitle}>Informações Tecnicas:</Text>
-        <Text style={styles.tituloinfo}>Associação:</Text>
-        <Text style={styles.textinfo}>{treinador.associacao}</Text>
-        <Text style={styles.tituloinfo}>Ano de Entrada:</Text>
-        <Text style={styles.textinfo}>{treinador.anoentrada}</Text>
-        <Text style={styles.sectionTitle}>Informações Adicionais</Text>
-        <Text style={styles.tituloinfo}>Artes Marciais:</Text>
-        <Text style={styles.textinfo}>{treinador.artesmarciais}</Text>
-        <Text style={styles.tituloinfo}>Formações:</Text>
-        <Text style={styles.textinfo}>{treinador.formacoes}</Text>
-      </View>
+      <StatusBar style="auto" />
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigation.openDrawer()}
+      >
+        <Ionicons name="menu" size={32} color="white" />
+      </TouchableOpacity>
+      <Image source={treinador.foto} style={styles.foto} />
+      <Text style={styles.nome}>{treinador.nome}</Text>
+      <Card title="Informações Gerais">
+        <Text style={styles.info}>Idade: {treinador.idade}</Text>
+        <Text style={styles.info}>Associação: {treinador.associacao}</Text>
+        <Text style={styles.info}>Ano de Entrada: {treinador.anoentrada}</Text>
+        <Text style={styles.info}>Artes Marciais: {treinador.artesmarciais}</Text>
+        <Text style={styles.info}>Formações: {treinador.formacoes}</Text>
+      </Card>
+      <Card title="Biografia">
+        <Text style={styles.biografia}>{treinador.biografia}</Text>
+      </Card>
+      <Card title="Conquistas">
+        {treinador.conquistas.map((conquista, index) => (
+          <Text key={index} style={styles.listItem}>{conquista}</Text>
+        ))}
+      </Card>
+      <Card title="Alunos Notáveis">
+        {treinador.alunosNotaveis.map((aluno, index) => (
+          <Text key={index} style={styles.listItem}>{aluno.nome}: {aluno.descricao}</Text>
+        ))}
+      </Card>
+      <Card title="Contato">
+        <Text style={styles.info}>Email: </Text>
+        <Text style={styles.info}> {treinador.contato.email}</Text>
+      </Card>
     </ScrollView>
   );
 };
@@ -35,71 +65,59 @@ const TreinadorDetail = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'flex-start',
     backgroundColor: '#1E1E1E',
     padding: 20,
     alignItems: 'center',
   },
+  menuButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+  },
+  foto: {
+    marginTop:35,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 20,
+  },  
+  nome: {
+    fontSize: 28,
+    color: '#33FFFF',
+    marginBottom: 10,
+  },
   card: {
-    flexDirection:'row',
-    alignItems: 'center',
+    width: '100%',
     backgroundColor: '#333333',
     borderRadius: 10,
-    padding: 20,
-    marginVertical: 10,
+    padding: 15,
+    marginBottom: 20,
     borderWidth: 2,
     borderColor: '#33FFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
-    elevation: 5,
-    width: '100%',
   },
-  centeredCard: {
-   // alignItems: 'center', // Center align all items in the card
-    backgroundColor:'#333333',
-    borderRadius:10,
-    padding:20,
-    marginVertical:10,
-    borderWidth:2,
-    borderColor:'#33FFFF',
-    shadowColor:'#000',
-    shadowOffset:{width:0, height:2},
-    shadowOpacity:0.8,
-    shadowRadius:5,
-    elevation:5,
-    width:'100%',
-},
-  image: {
-    width: 120,
-    height: 180,
-    borderRadius: 5,
-    marginRight: 20,
-  },
-  infoContainer: {
-    justifyContent: 'center',
-    flex: 1,
-  },
-  textinfo: {
-    color: '#fff',
-    fontSize: 16,
-    marginBottom: 10,
-    textAlign: 'left',
-  },
-  tituloinfo: {
-    color: '#33FFFF',
+  cardTitle: {
     fontSize: 20,
-    marginBottom: 5,
-    //fontWeight: 'bold',
-    textAlign: 'left',
-  },
-  sectionTitle: {
-    fontSize: 22,
     color: '#33FFFF',
-    marginBottom: 15,
+    marginBottom: 10,
+  },
+  cardContent: {
+    paddingLeft: 10,
+  },
+  info: {
+    fontSize: 18,
+    color: '#CCCCCC',
+    marginVertical: 2,
+  },
+  biografia: {
+    fontSize: 16,
+    color: '#CCCCCC',
+    marginVertical: 10,
     textAlign: 'center',
-    fontWeight:'bold',
+  },
+  listItem: {
+    fontSize: 16,
+    color: '#CCCCCC',
+    marginVertical: 2,
   },
 });
 
