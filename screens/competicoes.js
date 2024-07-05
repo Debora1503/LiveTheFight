@@ -88,11 +88,11 @@ const Competicoes = ({ navigation }) => {
 
   const data = [
     { id: '1', name: 'Bernardo', won: 10, lost: 2, image: require('../img/bernardo.jpg') },
-    { id: '2', name: 'Joaquim', won: 8, lost: 3, image: require('../img/bernardo.jpg') },
-    { id: '3', name: 'Rita', won: 15, lost: 5, image: require('../img/bernardo.jpg') },
-    { id: '4', name: 'Carla', won: 12, lost: 4, image: require('../img/bernardo.jpg') },
-    { id: '5', name: 'Tiago', won: 9, lost: 1, image: require('../img/bernardo.jpg') },
-    { id: '6', name: 'Diogo', won: 14, lost: 6, image: require('../img/bernardo.jpg') },
+    { id: '2', name: 'Joaquim', won: 8, lost: 3, image: require('../img/do-utilizador.png') },
+    { id: '3', name: 'Débora', won: 15, lost: 5, image: require('../img/debora.jpg') },
+    { id: '4', name: 'Carla', won: 12, lost: 4, image: require('../img/do-utilizador.png') },
+    { id: '5', name: 'Tiago', won: 9, lost: 1, image: require('../img/do-utilizador.png') },
+    { id: '6', name: 'Diogo', won: 14, lost: 6, image: require('../img/diogo.jpg') },
   ];
 
   const renderItem = (item, index) => (
@@ -158,8 +158,9 @@ const Competicoes = ({ navigation }) => {
 
       <Text style={styles.header}>Competições</Text>
       <ScrollView contentContainerStyle={styles.cardContainer}>
+      <Text style={styles.separatorText}>Este evento ira começar dia 20.07.2024 as 11:30h</Text>
         <View style={styles.separatorContainer}>
-          <Text style={styles.separatorText}>Luta 1</Text>
+          <Text style={styles.separatorText}></Text>
           <View style={styles.separator} />
         </View>
         {data.map((item, index) => (
@@ -167,7 +168,7 @@ const Competicoes = ({ navigation }) => {
             {renderItem(item, index)}
             {(index + 1) % 2 === 0 && index < data.length - 1 && (
               <View style={styles.separatorContainer}>
-                <Text style={styles.separatorText}>Luta 2</Text>
+                <Text style={styles.separatorText}></Text>
                 <View style={styles.separator} />
               </View>
             )}
@@ -183,7 +184,7 @@ const Competicoes = ({ navigation }) => {
             setSelectedEvent(data[0]); // Define um evento padrão para mostrar no modal, se necessário
             setModalVisible(true);
           }
-        }}
+        }}  
       >
         <Ionicons name="ellipsis-vertical" size={32} color="white" />
       </TouchableOpacity>
